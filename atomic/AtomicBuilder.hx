@@ -15,14 +15,14 @@ class AtomicBuilder {
 	var statics : List<{ c : ClassType, f : ClassField }>;
 	var requirements: Map<String, Array<String>>;
 	var currClass:BaseType;
-	var isEnum:Bool;
+	var isEnum:Bool = false;
 	var components:List<ClassType>;
 	var enums:List<EnumType>;
 	var isComponent:Bool = false;
 	var isScript:Bool = false;
 	static var reservedWords:Array<String> = ['Math', 'Array', 'Date', 'Enum', 'Class', 'Dynamic', 'Bool', 'Float', 'Int', 'String', 'Error', 'null'];
-	
-	
+
+
 	function new(api:JSGenApi) {
 		this.api = api;
 		this.buf = new StringBuf();
@@ -34,19 +34,19 @@ class AtomicBuilder {
 		api.setTypeAccessor(getType);
 		build();
 	}
-	
+
 	function getType( t : Type ) {
 		return switch(t) {
 			case TInst(c, _):
 				getPath(c.get(), 0);
-			case TEnum(e, _): 
+			case TEnum(e, _):
 				getPath(e.get(), 1);
-			case TAbstract(a, _): 
+			case TAbstract(a, _):
 				getPath(a.get(), 2);
 			default: throw "assert";
 		};
 	}
-	
+
 	//n is a type, 0 - inst, 1 - enum, 2 - abstract
 	function getPath(t : BaseType, ?nt: Int) {
 		var s:Array<String> = t.module.split(".");
@@ -68,7 +68,7 @@ class AtomicBuilder {
 		//check if it's a script or a component
 		//probably I should rework it, to make components and scripts works with metadata, such like:
 		//@:AtomicComponent or @:AtomicScript
-		if (isComponent || isScript) {	
+		if (isComponent || isScript) {
 			var s = false;
 			for (p in mod) {
 				if (p == "components" || p == "scripts") {
@@ -86,7 +86,7 @@ class AtomicBuilder {
 		}
 		return t.name;
 	}
-	
+
 	function addReq(name:String) {
 		if (!requirements.exists(currClass.name)) {
 			requirements.set(currClass.name, new Array());
@@ -97,7 +97,7 @@ class AtomicBuilder {
 		}
 		arr.push(name);
 	}
-	
+
 	function genType( t : Type ):Void {
 		switch( t ) {
 		case TInst(c, _):
@@ -106,7 +106,7 @@ class AtomicBuilder {
 				//trace("Adding init: " + c.name);
 				inits.add(c.init);
 			}
-			if ( !c.isExtern ) 
+			if ( !c.isExtern )
 				genClass(c);
 		case TEnum(r, _):
 			var e = r.get();
@@ -114,11 +114,11 @@ class AtomicBuilder {
 		default:
 		}
 	}
-	
+
 	inline function print(str):Void {
 		buf.add(str);
 	}
-	
+
 	inline function prepend(str):Void {
 		var b = new StringBuf();
 		b.add(str);
@@ -129,21 +129,21 @@ class AtomicBuilder {
 	inline function newline():Void {
 		buf.add(";\n");
 	}
-	
+
 	inline function printExtend__():Void {
 		var str:String = "var __extends = (this && this.__extends) || function (d, b) {for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];function __() { this.constructor = d; };__.prototype = b.prototype;d.prototype = new __();};\n";
 		print(str);
 	}
-	
+
 	inline function genExpr(e):Void {
 		print(getExpr(e));
 	}
-	
+
 	inline function getExpr(e):String {
 		var out = api.generateValue(e);
 		return out;
 	}
-	
+
 	function checkRequires(c: ClassType):Void {
 		var arr = requirements.get(currClass.name);
 		if (arr == null || arr.length == 0) return;
@@ -155,16 +155,15 @@ class AtomicBuilder {
 			if (name.length <= 0) name = a[a.length - 2];
 			if (req.length <= 0 || name == currClass.name || reservedWords.indexOf(name) >= 0) continue;
 			//check if the last char is / if true, than delete it
-			if (StringTools.endsWith(req, "/")) 
+			if (StringTools.endsWith(req, "/"))
 				req = req.substr(0, -1);
 			prepend("var " + name + " = require(\"" + req + "\");\n");
 		}
 	}
-	
+
 	function genClass(c:ClassType):Void {
 		for (meta in c.meta.get()) {
 			if (meta.name == ":AtomicComponent") {
-				isComponent = true;
 				components.add(c);
 				return;
 			} else if (meta.name == ":AtomicScript") {
@@ -172,7 +171,7 @@ class AtomicBuilder {
 				genScript(c);
 				return;
 			}
-		}	
+		}
 		genScript(c);
 		//trace("gen: " + c.name);
 		//no matter
@@ -182,7 +181,7 @@ class AtomicBuilder {
 		//	genScript(c);
 		//}
 	}
-	
+
 	function genConstructor(c: ClassType):Void {
 		if (c.constructor != null) {
 			var constructor = getExpr(c.constructor.get().expr());
@@ -194,7 +193,7 @@ class AtomicBuilder {
 			newline();
 		}
 	}
-	
+
 	function genClassBoody(c: ClassType):Void {
 		api.setCurrentClass(c);
 		currClass = c;
@@ -213,12 +212,12 @@ class AtomicBuilder {
 		print('module.exports = ${c.name};\n');
 		checkRequires(c);
 	}
-	
+
 	function genScript(c: ClassType):Void {
 		genClassBoody(c);
 		writeFile();
 	}
-	
+
 	function genComponent(c: ClassType):Void {
 		isComponent = true;
 		print("\"atomic component\"");
@@ -226,7 +225,7 @@ class AtomicBuilder {
 		genClassBoody(c);
 		writeFile();
 	}
-	
+
 	function genEnum(e: EnumType) {
 		currClass = e;
 		isEnum = true;
@@ -251,7 +250,7 @@ class AtomicBuilder {
 		print('module.exports = ${e.name};\n');
 		writeFile();
 	}
-	
+
 	function genStaticField(c: ClassType, f: ClassField):Void {
 		var field = f.name;
 		var e = f.expr();
@@ -275,7 +274,7 @@ class AtomicBuilder {
 			statics.add( { c : c, f : f } );
 		}
 	}
-	
+
 	function genClassField(c: ClassType, f: ClassField):Void {
 		var field = f.name;
 		print(c.name + '.prototype.$field = ');
@@ -287,14 +286,14 @@ class AtomicBuilder {
 		}
 		newline();
 	}
-	
+
 	function build():Void {
 		for(t in api.types)
 			genType(t);
-		for (comp in components) 
+		for (comp in components)
 			genComponent(comp);
 	}
-	
+
 	//saves current buffer to file and then clears buffer
 	function writeFile():Void {
 		var path = "";
@@ -310,6 +309,7 @@ class AtomicBuilder {
 		} else {
 			path = "modules/";
 		}
+		trace(path + " " + currClass.name);
 		if (!FileSystem.exists(path)) {
 			FileSystem.createDirectory(path);
 		}
@@ -318,11 +318,11 @@ class AtomicBuilder {
 		buf = new StringBuf();
 		isEnum = isComponent = isScript = false;
 	}
-	
+
 	static function use() {
 		Compiler.setCustomJSGenerator(function(_api) {
 			new AtomicBuilder(_api);
 		});
 	}
-	
+
 }
