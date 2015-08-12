@@ -1,4 +1,4 @@
-#Haxe definitions for the [Atomic Game Engine](https://github.com/AtomicGameEngine/AtomicGameEngine)!
+#Haxe definitions for the [Atomic Game Engine](http://www.AtomicGameEngine.com)!
 
 To install atomic-haxe package use `haxelib git atomic-haxe https://github.com/rsredsq/atomic-haxe/`.
 
@@ -8,15 +8,9 @@ Have questions? Join a gitter chat of [Atomic Game Engine](https://github.com/At
 
 And ask for me :D
 
+<a href="https://twitter.com/rsredsq">Follow me on twitter</a>
 
 #What is Atomic Game Engine?
-
-
-####Atomic Game Engine™ Editor and Player Source Repository
-
-###### Looking for the Javascript examples?
-
-They are over here: <a href="https://github.com/AtomicGameEngine/AtomicExamples">Javascript Examples</a>
 
 ##### Website
 
@@ -34,8 +28,10 @@ They are over here: <a href="https://github.com/AtomicGameEngine/AtomicExamples"
 
 <a href="https://twitter.com/AtomicGEngine">Follow @AtomicGEngine</a>
 
+###### Looking for the Javascript examples?
+
+They are over here: <a href="https://github.com/AtomicGameEngine/AtomicExamples">Javascript Examples</a>
+
 [WelcomeScreen]: https://github.com/AtomicGameEngine/AtomicExamples/wiki/images/WelcomeScreen.png
 
 ![alt text][WelcomeScreen]
-
-This repository contains the full source code to the Atomic Game Engine Runtime and Editor
