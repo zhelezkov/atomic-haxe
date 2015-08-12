@@ -1,6 +1,6 @@
 var MegaColor = require("modules/MegaColor");
 var StringTools = require("modules/StringTools");
-var Loler = require("scripts/utils/Loler");
+var Loler = require("scripts/Loler");
 var SuperStar = require("components/SuperStar");
 "atomic component";
 var __extends = (this && this.__extends) || function (d, b) {for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];function __() { this.constructor = d; };__.prototype = b.prototype;d.prototype = new __();};
@@ -22,7 +22,6 @@ MegaStar.prototype.start = function() {
 };
 MegaStar.prototype.update = function(time) {
 	SuperStar.prototype.update.call(this,time);
-	this.onKeyDown();
 };
 MegaStar.prototype.onKeyDown = function() {
 	if(Atomic.input.getKeyDown(Atomic.KEY_LEFT)) this.pos[0] -= 0.5;

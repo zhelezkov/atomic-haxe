@@ -18,8 +18,6 @@ class AtomicBuilder {
 	var isEnum:Bool = false;
 	var components:List<ClassType>;
 	var enums:List<EnumType>;
-	var isComponent:Bool = false;
-	var isScript:Bool = false;
 	static var reservedWords:Array<String> = ['Math', 'Array', 'Date', 'Enum', 'Class', 'Dynamic', 'Bool', 'Float', 'Int', 'String', 'Error', 'null'];
 
 
@@ -68,17 +66,12 @@ class AtomicBuilder {
 		//check if it's a script or a component
 		//probably I should rework it, to make components and scripts works with metadata, such like:
 		//@:AtomicComponent or @:AtomicScript
-		if (isComponent || isScript) {
-			var s = false;
-			for (p in mod) {
-				if (p == "components" || p == "scripts") {
-					s = true;
-				}
-				if(s)
-					n += p + "/";
+		if (isComponent(t) || isScript(t)) {
+			if(isComponent(t)) {
+				n = "components/" + t.name;
 			}
-			if (n == "") {
-				n = "modules/" +  t.name;
+			if(isScript(t)) {
+				n = "scripts/" + t.name;
 			}
 			addReq(n);
 		} else {
@@ -167,19 +160,11 @@ class AtomicBuilder {
 				components.add(c);
 				return;
 			} else if (meta.name == ":AtomicScript") {
-				isScript = true;
 				genScript(c);
 				return;
 			}
 		}
 		genScript(c);
-		//trace("gen: " + c.name);
-		//no matter
-		//if (c.pack.length > 0 && c.pack[0].toLowerCase() == "components") {
-		//	components.add(c);
-		//} else {
-		//	genScript(c);
-		//}
 	}
 
 	function genConstructor(c: ClassType):Void {
@@ -195,8 +180,8 @@ class AtomicBuilder {
 	}
 
 	function genClassBoody(c: ClassType):Void {
-		api.setCurrentClass(c);
 		currClass = c;
+		api.setCurrentClass(c);
 		printExtend__();
 		print('var ${c.name} = (function(_super) {\n');
 		print('__extends(${c.name}, _super);\n');
@@ -219,7 +204,6 @@ class AtomicBuilder {
 	}
 
 	function genComponent(c: ClassType):Void {
-		isComponent = true;
 		print("\"atomic component\"");
 		newline();
 		genClassBoody(c);
@@ -297,26 +281,39 @@ class AtomicBuilder {
 	//saves current buffer to file and then clears buffer
 	function writeFile():Void {
 		var path = "";
-		if (!isEnum && (isScript || isComponent)) {
-			var s = false;
-			for (p in currClass.pack) {
-				if (p == "components" || p == "scripts") {
-					s = true;
-				}
-				if(s)
-					path += p + "/";
+		if (!isEnum && (isComponent(currClass) || isScript(currClass))) {
+			if(isComponent(currClass)) {
+				path = "components/";
+			}
+			if(isScript(currClass)) {
+				path = "scripts/";
 			}
 		} else {
 			path = "modules/";
 		}
-		trace(path + " " + currClass.name);
 		if (!FileSystem.exists(path)) {
 			FileSystem.createDirectory(path);
 		}
 		path += currClass.name + ".js";
 		File.saveContent(path, buf.toString());
 		buf = new StringBuf();
-		isEnum = isComponent = isScript = false;
+		isEnum = false;
+	}
+
+	function isComponent(c:BaseType):Bool {
+		for(meta in c.meta.get()) {
+			if(meta.name == ":AtomicComponent")
+				return true;
+		}
+		return false;
+	}
+
+	function isScript(c:BaseType):Bool {
+		for(meta in c.meta.get()) {
+			if(meta.name == ":AtomicScript")
+				return true;
+		}
+		return false;
 	}
 
 	static function use() {
