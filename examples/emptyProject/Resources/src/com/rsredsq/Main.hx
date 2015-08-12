@@ -1,5 +1,6 @@
 package com.rsredsq;
 
+//import is important here, otherwise compiler wouldn't know if it needs to compile that file
 import com.rsredsq.components.Star;
 
 //Don't forget to add @:AtomicScript metadata before each script
