@@ -1,0 +1,12 @@
+{
+  "name": "atomic-haxe",
+  "url" : "https://github.com/rsredsq/atomic-haxe/",
+  "tags": ["js", "atomic", "game", "engine"],
+  "description": "Haxe definitions for Atomic Game Engine",
+  "version": "1.0.0-alpha",
+  "classPath": "src/",
+  "releasenote": "Initial release, everything should work correctly.",
+  "contributors": ["rsredsq"],
+  "dependencies": {
+  }
+}
