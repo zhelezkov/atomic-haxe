@@ -18,7 +18,7 @@ class AtomicBuilder {
 	var isEnum:Bool = false;
 	var components:List<ClassType>;
 	var enums:List<EnumType>;
-	static var reservedWords:Array<String> = ['Math', 'Array', 'Date', 'Enum', 'Class', 'Dynamic', 'Bool', 'Float', 'Int', 'String', 'Error', 'null'];
+	static var reservedWords:Array<String> = ['Math', 'Array', 'Date', 'Enum', 'Class', 'Dynamic', 'Bool', 'Float', 'Int', 'String', 'Error', 'null', 'Float32Array'];
 
 
 	function new(api:JSGenApi) {
