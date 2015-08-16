@@ -123,9 +123,19 @@ class AtomicBuilder {
 		buf.add(";\n");
 	}
 
-	inline function printExtend__():Void {
+	inline function printExtend():Void {
 		var str:String = "var __extends = (this && this.__extends) || function (d, b) {for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];function __() { this.constructor = d; };__.prototype = b.prototype;d.prototype = new __();};\n";
 		print(str);
+	}
+
+	inline function printBind():Void {
+		var str:String = "function $bind(n,u){if(null==u)return null;var e;return null==e&&(e=function(){return e.method.apply(e.scope,arguments)},e.scope=n,e.method=u),e};\n";
+		print(str);
+	}
+
+	inline function printHelpers():Void {
+		printExtend();
+		printBind();
 	}
 
 	inline function genExpr(e):Void {
@@ -182,7 +192,7 @@ class AtomicBuilder {
 	function genClassBoody(c: ClassType):Void {
 		currClass = c;
 		api.setCurrentClass(c);
-		printExtend__();
+		printHelpers();
 		print('var ${c.name} = (function(_super) {\n');
 		print('__extends(${c.name}, _super);\n');
 		genConstructor(c);
