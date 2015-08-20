@@ -268,6 +268,7 @@ class AtomicBuilder {
 			//newline();
 		}
 		print("};\n");
+		inspectorFields.clear();
 	}
 
 	function genScript(c: ClassType):Void {
