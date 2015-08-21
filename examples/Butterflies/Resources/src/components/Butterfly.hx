@@ -18,8 +18,12 @@ class Butterfly extends JSComponent {
     public static var halfHeight:Float = Atomic.graphics.height * Atomic.PIXEL_SIZE * 0.5;
 
     public function start() {
+        spr = cast node.createComponent("AnimatedSprite2D");
+        spr.animationSet = cast Atomic.cache.getResource("AnimationSet2D", "Sprites/insects/butterfly.scml");
+        spr.setAnimation("idle");
+        spr.color = [.1 + Math.random() * .9, .1 + Math.random() * .9, .1 + Math.random() * .9, 1];
+        spr.blendMode = BlendMode.BLEND_ALPHA;
         pos = node.getPosition2D();
-        spr = cast node.getComponent("AnimatedSprite2D");
     }
 
     public function update(delta:Float) {
@@ -37,7 +41,7 @@ class Butterfly extends JSComponent {
             scene.removeChild(node);
         }
     }
-    //Just some math function
+    //Just some math functions
     function circWrapTo(value:Float, target:Float, step:Float):Float {
         if (value == target) return target;
         var max = Math.PI * 2;

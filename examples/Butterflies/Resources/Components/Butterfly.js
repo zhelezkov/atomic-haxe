@@ -9,8 +9,6 @@ function Butterfly () {
 	this.direction = Math.random() * Math.PI * 2;
 	Atomic.JSComponent.call(this);
 };
-Butterfly.halfWidth = Atomic.graphics.width * Atomic.PIXEL_SIZE * 0.5;
-Butterfly.halfHeight = Atomic.graphics.height * Atomic.PIXEL_SIZE * 0.5;
 Butterfly.prototype.pos = null;
 Butterfly.prototype.spr = null;
 Butterfly.prototype.time = null;
@@ -19,8 +17,12 @@ Butterfly.prototype.direction = null;
 Butterfly.prototype.rotationSpeed = null;
 Butterfly.prototype.speed = null;
 Butterfly.prototype.start = function() {
+	this.spr = this.node.createComponent("AnimatedSprite2D");
+	this.spr.animationSet = Atomic.cache.getResource("AnimationSet2D","Sprites/insects/butterfly.scml");
+	this.spr.setAnimation("idle");
+	this.spr.color = [.1 + Math.random() * .9,.1 + Math.random() * .9,.1 + Math.random() * .9,1];
+	this.spr.blendMode = Atomic.BLEND_ALPHA;
 	this.pos = this.node.getPosition2D();
-	this.spr = this.node.getComponent("AnimatedSprite2D");
 };
 Butterfly.prototype.update = function(delta) {
 	this.time += delta;
@@ -55,11 +57,8 @@ Butterfly.prototype.wrappedDistance = function(a,b,max) {
 	}
 	if(Math.abs(l) > Math.abs(r)) return r; else return l;
 };
-var inspectorFields = {
-    speed: null,
-    rotationSpeed: 10,
-    direction: null,
-};
+Butterfly.halfWidth = Atomic.graphics.width * Atomic.PIXEL_SIZE * 0.5;
+Butterfly.halfHeight = Atomic.graphics.height * Atomic.PIXEL_SIZE * 0.5;
 return Butterfly;
 })(Atomic.JSComponent);
 module.exports = Butterfly;

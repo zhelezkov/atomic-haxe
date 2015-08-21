@@ -22,7 +22,8 @@ class AtomicBuilder {
 	var components:List<ClassType>;
 	var enums:List<EnumType>;
 	var inspectorFields:List<{fieldName:String, defaultVal:Dynamic}>;
-	
+	var isMain:Bool;
+
 	function new(api:JSGenApi) {
 		this.api = api;
 		this.buf = new StringBuf();
@@ -32,6 +33,7 @@ class AtomicBuilder {
 		this.components = new List();
 		this.enums = new List();
 		this.inspectorFields = new List();
+		isMain = false;
 		api.setTypeAccessor(getType);
 		build();
 	}
@@ -174,7 +176,7 @@ class AtomicBuilder {
 		} else if (meta.has(":AtomicScript")) {
 			genScript(c);
 		} else {
-			genScript(c);			
+			genScript(c);
 		}
 	}
 
@@ -207,6 +209,9 @@ class AtomicBuilder {
 						case TField(_, a):
 							switch(a) {
 								case FInstance(_, _, field):
+									if (!field.get().meta.has(":AtomicEditor")) {
+										break;
+									}
 									fieldName = field.get().name;
 								default:
 							}
@@ -236,19 +241,26 @@ class AtomicBuilder {
 		print('var ${c.name} = (function(_super) {\n');
 		print('__extends(${c.name}, _super);\n');
 		genConstructor(c);
-		for(f in c.statics.get())
-			genStaticField(c, f);
 		for(f in c.fields.get()) {
 			genClassField(c, f);
 		}
+		for (f in c.statics.get()) {
+			genStaticField(c, f);
+		}
 		printInspectorFields();
+		if (isMain) {
+			print(c.name  + ".main()");
+			newline();
+			isMain = false;
+		}
 		print('return ${c.name};\n');
 		print("})(" + (c.superClass == null ? "Object" : getPath(c.superClass.t.get())) +");\n");
 		print('module.exports = ${c.name};\n');
 		checkRequires(c);
 	}
-	
+
 	function printInspectorFields():Void {
+		if (inspectorFields.length <= 0) return;
 		//print(currClass.name + ".prototype.inspectorFields = {\n");
 		print("var inspectorFields = {\n");
 		for (f in inspectorFields) {
@@ -319,8 +331,7 @@ class AtomicBuilder {
 			print(c.name + '.$field = ');
 			genExpr(e);
 			if (f.name == "main") {
-				newline();
-				genExpr(api.main);
+				isMain = true;
 			}
 			newline();
 		case FVar(r, w):

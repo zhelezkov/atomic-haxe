@@ -70,8 +70,6 @@ Boot.__string_rec = function(o,s) {
 		return String(o);
 	}
 };
-var inspectorFields = {
-};
 return Boot;
 })(Object);
 module.exports = Boot;

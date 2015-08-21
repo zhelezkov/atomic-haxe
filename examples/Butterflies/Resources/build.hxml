@@ -2,4 +2,3 @@
 -cp src
 -main Main.hx
 -lib atomic-haxe
--cmd C:\Users\rsred\Documents\GitHub\AtomicGameEngine-build\Source\AtomicEditor\Debug\AtomicEditor.exe --player --project C:\Users\rsred\Documents\AtomicProjects\Butterflies --log-std

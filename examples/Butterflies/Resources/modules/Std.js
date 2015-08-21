@@ -3,11 +3,6 @@ function $bind(n,u){if(null==u)return null;var e;return null==e&&(e=function(){r
 var Std = (function(_super) {
 __extends(Std, _super);
 function Std (){};
-Std.int = function(x) {
-	return x | 0;
-};
-var inspectorFields = {
-};
 return Std;
 })(Object);
 module.exports = Std;
