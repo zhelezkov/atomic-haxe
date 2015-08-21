@@ -24,7 +24,6 @@ Butterfly.prototype.start = function() {
 };
 Butterfly.prototype.update = function(delta) {
 	this.time += delta;
-	console.log(this.time);
 	if(this.time % 1000 / 1000 < 0.5) this.desiredDirection = Math.random() * Math.PI * 2;
 	this.direction = this.circWrapTo(this.direction,this.desiredDirection,this.rotationSpeed * delta);
 	this.pos[0] += Math.cos(this.direction) * this.speed * delta;
