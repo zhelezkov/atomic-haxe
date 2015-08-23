@@ -3395,8 +3395,6 @@ extern class Graphics extends AObject {
     function getAnisotropySupport(): Bool;
     // Return readable depth-stencil texture. Not created automatically on OpenGL.
     function getDepthTexture(): Texture2D;
-    // Clean up too large scratch buffers.
-    function cleanupScratchBuffers(): Void;
       // Clean up a render surface from all FBOs.
     function cleanupRenderSurface(surface: RenderSurface): Void;
       // Release/clear GPU objects and optionally close the window.
