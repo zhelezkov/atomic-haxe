@@ -1,1 +1,2 @@
+-js no-output
 --macro atomic.AtomicBuilder.use()

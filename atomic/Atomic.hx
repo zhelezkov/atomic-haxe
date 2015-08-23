@@ -506,12 +506,6 @@ extern enum MouseMode {
     MM_WRAP;
 }
 @:native("Atomic")
-extern enum TEXT_ALIGN {
-    TEXT_ALIGN_LEFT;
-    TEXT_ALIGN_RIGHT;
-    TEXT_ALIGN_CENTER;
-}
-@:native("Atomic")
 extern enum UI_EDIT_TYPE {
     UI_EDIT_TYPE_TEXT;
     UI_EDIT_TYPE_SEARCH;
@@ -573,12 +567,6 @@ extern enum UI_SCROLL_MODE {
     UI_SCROLL_MODE_OFF;
 }
 @:native("Atomic")
-extern enum UI_TEXT_ALIGN {
-    UI_TEXT_ALIGN_LEFT;
-    UI_TEXT_ALIGN_RIGHT;
-    UI_TEXT_ALIGN_CENTER;
-}
-@:native("Atomic")
 extern enum UI_WIDGET_VISIBILITY {
     UI_WIDGET_VISIBILITY_VISIBLE;
     UI_WIDGET_VISIBILITY_INVISIBLE;
@@ -619,6 +607,12 @@ extern enum UI_EVENT_TYPE {
 extern enum UI_WIDGET_Z_REL {
     UI_WIDGET_Z_REL_BEFORE;
     UI_WIDGET_Z_REL_AFTER;
+}
+@:native("Atomic")
+extern enum UI_TEXT_ALIGN {
+    UI_TEXT_ALIGN_LEFT;
+    UI_TEXT_ALIGN_RIGHT;
+    UI_TEXT_ALIGN_CENTER;
 }
 @:native("Atomic")
 extern enum UI_WINDOW_SETTINGS {
@@ -823,6 +817,7 @@ extern class Atomic {
     public static var CHANNEL_ROTATION: Int;
     public static var CHANNEL_SCALE: Int;
     public static var MAX_BILLBOARDS: Float;
+    public static var MODEL_VERSION: Float;
     public static var DEFAULT_NUM_PARTICLES: Float;
     public static var BONECOLLISION_NONE: Float;
     public static var BONECOLLISION_SPHERE: Float;
@@ -3127,6 +3122,15 @@ extern class Graphics extends AObject {
     var readableDepthFormat: UInt;
     var pixelUVOffset: Vector2;
     var maxBones: UInt;
+    #if Mac
+    var forceGL2: Bool;
+    var textureForUpdate: Texture;
+    var anisotropySupport: Bool;
+    var depthTexture: Texture2D;
+    var vbo: UInt;
+    var ubo: UInt;
+    var gL3Support: Bool;
+    #end
 
       // Construct.
     function new();
@@ -3378,6 +3382,37 @@ extern class Graphics extends AObject {
       // Return maximum number of supported bones for skinning.
     function getMaxBones(): UInt;
 
+    #if Mac
+    // Set forced use of OpenGL 2 even if OpenGL 3 is available. Must be called before setting the screen mode for the first time. Default false.
+    function setForceGL2(enable: Bool): Void;
+    // Bind texture unit 0 for update. Called by Texture.
+    function setTextureForUpdate(texture: Texture): Void;
+    // Dirty texture parameters of all textures (when global settings change.)
+    function setTextureParametersDirty(): Void;
+    // Return whether OpenGL 2 use is forced.
+    function getForceGL2(): Bool;
+    // Return whether anisotropic texture filtering is supported.
+    function getAnisotropySupport(): Bool;
+    // Return readable depth-stencil texture. Not created automatically on OpenGL.
+    function getDepthTexture(): Texture2D;
+    // Clean up too large scratch buffers.
+    function cleanupScratchBuffers(): Void;
+      // Clean up a render surface from all FBOs.
+    function cleanupRenderSurface(surface: RenderSurface): Void;
+      // Release/clear GPU objects and optionally close the window.
+    function release(clearGPUObjects: Bool, closeWindow: Bool): Void;
+      // Restore GPU objects and reinitialize state. Requires an open window.
+    function restore(): Void;
+    // Mark the FBO needing an update.
+    function markFBODirty(): Void;
+    // Bind a VBO, avoiding redundant operation.
+    function setVBO(object: UInt): Void;
+    // Bind a UBO, avoiding redundant operation.
+    function setUBO(object: UInt): Void;
+    // Return whether is using an OpenGL 3 context.
+    function getGL3Support(): Bool;
+    #end
+
 }
 
 @:native("Atomic.RenderSurface")
@@ -3391,6 +3426,10 @@ extern class RenderSurface extends RefCounted {
     var width: Int;
     var height: Int;
     var usage: TextureUsage;
+    #if Mac
+    var renderBuffer: UInt;
+    var target: UInt;
+    #end
 
       // Construct with parent texture.
     function new(parentTexture: Texture);
@@ -3429,6 +3468,18 @@ extern class RenderSurface extends RefCounted {
     function getLinkedDepthStencil(): RenderSurface;
       // Clear update flag. Called by Renderer.
     function wasUpdated(): Void;
+    #if Mac
+    // Create a renderbuffer. Return true if successful.
+    function createRenderBuffer(width: UInt, height: UInt, format: UInt): Bool;
+      // Handle device loss.
+    function onDeviceLost(): Void;
+    // Return renderbuffer if created.
+    function getRenderBuffer(): UInt;
+    // Set surface's OpenGL target.
+    function setTarget(target: UInt): Void;
+      // Return surface's OpenGL target.
+    function getTarget(): UInt;
+    #end
 
 }
 
@@ -3465,11 +3516,16 @@ extern class ShaderVariation extends RefCounted {
     function getFullName(): String;
       // Return compile error/warning string.
     function getCompilerOutput(): String;
+    #if Windows
       // Return whether uses a parameter.
     function hasParameter(param: String): Bool;
       // Return whether uses a texture unit (only for pixel shaders.)
     function hasTextureUnit(unit: TextureUnit): Bool;
-
+    #end
+    #if Mac
+    // Mark the GPU resource destroyed on context destruction.
+    function onDeviceLost(): Void;
+    #end
 }
 
 @:native("Atomic.Texture")
@@ -3489,6 +3545,10 @@ extern class Texture extends Resource {
     var usage: TextureUsage;
     var components: UInt;
     var parameters: XMLFile;
+    #if Mac
+    var target: UInt;
+    var parametersDirty: Bool;
+    #end
 
       // Construct.
     function new();
@@ -3549,7 +3609,22 @@ extern class Texture extends Resource {
     function getComponents(): UInt;
       // Set additional parameters from an XML file.
     function setParameters(xml: XMLFile): Void;
-
+    #if Mac
+    // Dirty the parameters.
+    function setParametersDirty(): Void;
+      // Update changed parameters to OpenGL. Called by Graphics when binding the texture.
+    function updateParameters(): Void;
+      // Return texture's OpenGL target.
+    function getTarget(): UInt;
+    // Return whether parameters are dirty.
+    function getParametersDirty(): Bool;
+    // Return the corresponding SRGB texture format if supported. If not supported, return format unchanged.
+    function getSRGBFormat(format: UInt): UInt;
+    // Return the non-internal texture format corresponding to an OpenGL internal format.
+    function getExternalFormat(format: UInt): UInt;
+      // Return the data type corresponding to an OpenGL internal format.
+    function getDataType(format: UInt): UInt;
+    #end
 }
 
 @:native("Atomic.Texture2D")
@@ -3986,6 +4061,7 @@ extern class Model extends Resource {
     var boundingBox: BoundingBox;
     var numGeometries: UInt;
     var numMorphs: UInt;
+    var animationCount: UInt;
 
       // Construct.
     function new();
@@ -4017,6 +4093,10 @@ extern class Model extends Resource {
     function getMorphRangeStart(bufferIndex: UInt): UInt;
       // Return vertex buffer morph range vertex count.
     function getMorphRangeCount(bufferIndex: UInt): UInt;
+    function addAnimationResource(animation: Animation): Void;
+    function removeAnimationResource(animation: Animation): Void;
+    function clearAnimationResources(): Void;
+    function getAnimationCount(): UInt;
 
 }
 
@@ -6142,6 +6222,15 @@ extern class Sound extends Resource {
 
 }
 
+@:native("Atomic.SoundListener")
+extern class SoundListener extends Component {
+
+      // Construct.
+    function new();
+
+
+}
+
 @:native("Atomic.SoundSource")
 extern class SoundSource extends Component {
 
@@ -6205,6 +6294,53 @@ extern class SoundSource extends Component {
     function setPlayingAttr(value: Bool): Void;
       // Return sound position attribute.
     function getPositionAttr(): Int;
+
+}
+
+@:native("Atomic.SoundSource3D")
+extern class SoundSource3D extends SoundSource {
+
+    var nearDistance: Float;
+    var farDistance: Float;
+    var innerAngle: Float;
+    var outerAngle: Float;
+    var rolloffFactor: Float;
+
+      // Construct.
+    function new();
+
+      // Visualize the component as debug geometry.
+    @:overload(function(debug: DebugRenderer, depthTest: Bool): Void{})
+    override function drawDebugGeometry(debug: DebugRenderer, depthTest: Bool): Void;
+      // Update sound source.
+    @:overload(function(timeStep: Float): Void{})
+    override function update(timeStep: Float): Void;
+      // Set attenuation parameters.
+    function setDistanceAttenuation(nearDistance: Float, farDistance: Float, rolloffFactor: Float): Void;
+      // Set angle attenuation parameters.
+    function setAngleAttenuation(innerAngle: Float, outerAngle: Float): Void;
+      // Set near distance. Inside this range sound will not be attenuated.
+    function setNearDistance(distance: Float): Void;
+      // Set far distance. Outside this range sound will be completely attenuated.
+    function setFarDistance(distance: Float): Void;
+      // Set inner angle in degrees. Inside this angle sound will not be attenuated.By default 360, meaning direction never has an effect.
+    function setInnerAngle(angle: Float): Void;
+      // Set outer angle in degrees. Outside this angle sound will be completely attenuated. By default 360, meaning direction never has an effect.
+    function setOuterAngle(angle: Float): Void;
+      // Set rolloff power factor, defines attenuation function shape.
+    function setRolloffFactor(factor: Float): Void;
+      // Calculate attenuation and panning based on current position and listener position.
+    function calculateAttenuation(): Void;
+      // Return near distance.
+    function getNearDistance(): Float;
+      // Return far distance.
+    function getFarDistance(): Float;
+      // Return inner angle in degrees.
+    function getInnerAngle(): Float;
+      // Return outer angle in degrees.
+    function getOuterAngle(): Float;
+      // Return rolloff power factor.
+    function rollAngleoffFactor(): Float;
 
 }
 
@@ -7004,6 +7140,10 @@ extern class UI extends AObject {
     function setDefaultFont(name: String, size: Int): Void;
     function debugGetWrappedWidgetCount(): UInt;
     function pruneUnreachableWidgets(): Void;
+    function showDebugHud(value: Bool): Void;
+    function toggleDebugHud(): Void;
+    function showConsole(value: Bool): Void;
+    function toggleConsole(): Void;
 
 }
 
@@ -7075,17 +7215,22 @@ extern class UIDragObject extends AObject {
 @:native("Atomic.UIEditField")
 extern class UIEditField extends UIWidget {
 
-    var textAlign: TEXT_ALIGN;
+    var textAlign: UI_TEXT_ALIGN;
+    var adaptToContentSize: Bool;
     var editType: UI_EDIT_TYPE;
     var readOnly: Bool;
+    var multiline: Bool;
     var wrapping: Bool;
 
     function new(?createWidget: Bool);
 
     function appendText(text: String): Void;
-    function setTextAlign(align: TEXT_ALIGN): Void;
+    function setTextAlign(align: UI_TEXT_ALIGN): Void;
+    function setAdaptToContentSize(adapt: Bool): Void;
+    function getAdaptToContentSize(): Bool;
     function setEditType(type: UI_EDIT_TYPE): Void;
     function setReadOnly(readonly: Bool): Void;
+    function setMultiline(multiline: Bool): Void;
     function scrollTo(x: Int, y: Int): Void;
     function setWrapping(wrap: Bool): Void;
     function getWrapping(): Bool;
@@ -8224,5 +8369,3 @@ extern class ProcSky extends Drawable {
     function getTimeOfDay(): Float;
 
 }
-
-

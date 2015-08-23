@@ -397,6 +397,7 @@ class AtomicBuilder {
 	}
 
 	static function use() {
+		Compiler.define(Sys.systemName());
 		Compiler.setCustomJSGenerator(function(_api) {
 			new AtomicBuilder(_api);
 		});
