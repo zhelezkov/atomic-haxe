@@ -6,6 +6,8 @@ To install atomic-haxe package use `haxelib git atomic-haxe https://github.com/r
 
 After that take a look at examples folder!
 
+Check out an [atomic-haxe-math](https://github.com/rsredsq/atomic-haxe-math) repo, for vec-math library special for atomic-haxe. The most comfortable work with that two libraries :)
+
 Have questions? Join a gitter chat of [Atomic Game Engine](https://github.com/AtomicGameEngine/AtomicGameEngine) [![Join the chat at https://gitter.im/AtomicGameEngine/AtomicGameEngine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AtomicGameEngine/AtomicGameEngine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 And ask for me :D
