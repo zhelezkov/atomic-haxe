@@ -19,7 +19,7 @@ class Star extends JSComponent {
 		  case Rgb(r, g, b): trace('r: $r, g: $g, b: $b');
 		}
 	}
-	
+
 	function start():Void {
 		var m = new MegaStar();
 	}

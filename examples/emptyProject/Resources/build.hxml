@@ -1,0 +1,4 @@
+-js out/main.js
+-cp src
+-main com.rsredsq.Main
+-lib atomic-haxe

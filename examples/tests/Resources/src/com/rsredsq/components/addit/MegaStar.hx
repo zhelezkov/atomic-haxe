@@ -6,9 +6,9 @@ import com.rsredsq.scripts.utils.Loler;
 
 @:AtomicComponent
 class MegaStar extends SuperStar {
-	
+
 	var pos:Vector2;
-	
+
 	function new() {
 		super(0);
 	}
@@ -22,15 +22,15 @@ class MegaStar extends SuperStar {
 		var str:String = "ReplAce me :)";
 		str = StringTools.replace(str, "Ace", "LOL");
 		trace(str);
-		
+
 		var c:MegaColor = MegaColor.Supa;
 	}
-	
+
 	override function update(time:Float) {
 		super.update(time);
-		onKeyDown();
+		//onKeyDown();
 	}
-	
+
 	function onKeyDown():Void {
 		if (Atomic.input.getKeyDown(Atomic.KEY_LEFT)) {
 			pos[0] -= 0.5;

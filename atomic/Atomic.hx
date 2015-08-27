@@ -506,12 +506,6 @@ extern enum MouseMode {
     MM_WRAP;
 }
 @:native("Atomic")
-extern enum TEXT_ALIGN {
-    TEXT_ALIGN_LEFT;
-    TEXT_ALIGN_RIGHT;
-    TEXT_ALIGN_CENTER;
-}
-@:native("Atomic")
 extern enum UI_EDIT_TYPE {
     UI_EDIT_TYPE_TEXT;
     UI_EDIT_TYPE_SEARCH;
@@ -573,12 +567,6 @@ extern enum UI_SCROLL_MODE {
     UI_SCROLL_MODE_OFF;
 }
 @:native("Atomic")
-extern enum UI_TEXT_ALIGN {
-    UI_TEXT_ALIGN_LEFT;
-    UI_TEXT_ALIGN_RIGHT;
-    UI_TEXT_ALIGN_CENTER;
-}
-@:native("Atomic")
 extern enum UI_WIDGET_VISIBILITY {
     UI_WIDGET_VISIBILITY_VISIBLE;
     UI_WIDGET_VISIBILITY_INVISIBLE;
@@ -619,6 +607,12 @@ extern enum UI_EVENT_TYPE {
 extern enum UI_WIDGET_Z_REL {
     UI_WIDGET_Z_REL_BEFORE;
     UI_WIDGET_Z_REL_AFTER;
+}
+@:native("Atomic")
+extern enum UI_TEXT_ALIGN {
+    UI_TEXT_ALIGN_LEFT;
+    UI_TEXT_ALIGN_RIGHT;
+    UI_TEXT_ALIGN_CENTER;
 }
 @:native("Atomic")
 extern enum UI_WINDOW_SETTINGS {
@@ -707,69 +701,69 @@ extern class Atomic {
     public static var MATRIX_CONVERSION_BUFFER_LENGTH: Int;
 
 
-    public static var NUM_FRUSTUM_PLANES: Int;
-    public static var NUM_FRUSTUM_VERTICES: Int;
-    public static var M_PI: Int;
-    public static var M_HALF_PI: Int;
+    public static var NUM_FRUSTUM_PLANES: Float;
+    public static var NUM_FRUSTUM_VERTICES: Float;
+    public static var M_PI: Float;
+    public static var M_HALF_PI: Float;
     public static var M_MIN_INT: Int;
     public static var M_MAX_INT: Int;
-    public static var M_MIN_UNSIGNED: Int;
-    public static var M_MAX_UNSIGNED: Int;
-    public static var M_EPSILON: Int;
-    public static var M_LARGE_EPSILON: Int;
-    public static var M_MIN_NEARCLIP: Int;
-    public static var M_MAX_FOV: Int;
-    public static var M_LARGE_VALUE: Int;
-    public static var M_INFINITY: Int;
-    public static var M_DEGTORAD: Int;
-    public static var M_DEGTORAD_2: Int;
-    public static var M_RADTODEG: Int;
+    public static var M_MIN_UNSIGNED: Float;
+    public static var M_MAX_UNSIGNED: Float;
+    public static var M_EPSILON: Float;
+    public static var M_LARGE_EPSILON: Float;
+    public static var M_MIN_NEARCLIP: Float;
+    public static var M_MAX_FOV: Float;
+    public static var M_LARGE_VALUE: Float;
+    public static var M_INFINITY: Float;
+    public static var M_DEGTORAD: Float;
+    public static var M_DEGTORAD_2: Float;
+    public static var M_RADTODEG: Float;
 
 
-    public static var AM_EDIT: Int;
-    public static var AM_FILE: Int;
-    public static var AM_NET: Int;
-    public static var AM_DEFAULT: Int;
-    public static var AM_LATESTDATA: Int;
-    public static var AM_NOEDIT: Int;
-    public static var AM_NODEID: Int;
-    public static var AM_COMPONENTID: Int;
-    public static var AM_NODEIDVECTOR: Int;
+    public static var AM_EDIT: Float;
+    public static var AM_FILE: Float;
+    public static var AM_NET: Float;
+    public static var AM_DEFAULT: Float;
+    public static var AM_LATESTDATA: Float;
+    public static var AM_NOEDIT: Float;
+    public static var AM_NODEID: Float;
+    public static var AM_COMPONENTID: Float;
+    public static var AM_NODEIDVECTOR: Float;
 
 
     public static var USE_UPDATE: Int;
     public static var USE_POSTUPDATE: Int;
     public static var USE_FIXEDUPDATE: Int;
     public static var USE_FIXEDPOSTUPDATE: Int;
-    public static var MAX_NETWORK_ATTRIBUTES: Int;
-    public static var FIRST_REPLICATED_ID: Int;
-    public static var LAST_REPLICATED_ID: Int;
-    public static var FIRST_LOCAL_ID: Int;
-    public static var LAST_LOCAL_ID: Int;
-    public static var SMOOTH_NONE: Int;
-    public static var SMOOTH_POSITION: Int;
-    public static var SMOOTH_ROTATION: Int;
+    public static var MAX_NETWORK_ATTRIBUTES: Float;
+    public static var FIRST_REPLICATED_ID: Float;
+    public static var LAST_REPLICATED_ID: Float;
+    public static var FIRST_LOCAL_ID: Float;
+    public static var LAST_LOCAL_ID: Float;
+    public static var SMOOTH_NONE: Float;
+    public static var SMOOTH_POSITION: Float;
+    public static var SMOOTH_ROTATION: Float;
 
 
-    public static var DEFAULT_NEARCLIP: Int;
-    public static var DEFAULT_FARCLIP: Int;
-    public static var DEFAULT_CAMERA_FOV: Int;
-    public static var DEFAULT_ORTHOSIZE: Int;
-    public static var VO_NONE: Int;
-    public static var VO_LOW_MATERIAL_QUALITY: Int;
-    public static var VO_DISABLE_SHADOWS: Int;
-    public static var VO_DISABLE_OCCLUSION: Int;
-    public static var DRAWABLE_GEOMETRY: Int;
-    public static var DRAWABLE_LIGHT: Int;
-    public static var DRAWABLE_ZONE: Int;
-    public static var DRAWABLE_GEOMETRY2D: Int;
-    public static var DRAWABLE_ANY: Int;
-    public static var DEFAULT_VIEWMASK: Int;
-    public static var DEFAULT_LIGHTMASK: Int;
-    public static var DEFAULT_SHADOWMASK: Int;
-    public static var DEFAULT_ZONEMASK: Int;
+    public static var DEFAULT_NEARCLIP: Float;
+    public static var DEFAULT_FARCLIP: Float;
+    public static var DEFAULT_CAMERA_FOV: Float;
+    public static var DEFAULT_ORTHOSIZE: Float;
+    public static var VO_NONE: Float;
+    public static var VO_LOW_MATERIAL_QUALITY: Float;
+    public static var VO_DISABLE_SHADOWS: Float;
+    public static var VO_DISABLE_OCCLUSION: Float;
+    public static var DRAWABLE_GEOMETRY: Float;
+    public static var DRAWABLE_LIGHT: Float;
+    public static var DRAWABLE_ZONE: Float;
+    public static var DRAWABLE_GEOMETRY2D: Float;
+    public static var DRAWABLE_ANY: Float;
+    public static var DEFAULT_VIEWMASK: Float;
+    public static var DEFAULT_LIGHTMASK: Float;
+    public static var DEFAULT_SHADOWMASK: Float;
+    public static var DEFAULT_ZONEMASK: Float;
     public static var MAX_VERTEX_LIGHTS: Int;
-    public static var ANIMATION_LOD_BASESCALE: Int;
+    public static var ANIMATION_LOD_BASESCALE: Float;
     public static var QUALITY_LOW: Int;
     public static var QUALITY_MEDIUM: Int;
     public static var QUALITY_HIGH: Int;
@@ -778,64 +772,65 @@ extern class Atomic {
     public static var SHADOWQUALITY_LOW_24BIT: Int;
     public static var SHADOWQUALITY_HIGH_16BIT: Int;
     public static var SHADOWQUALITY_HIGH_24BIT: Int;
-    public static var CLEAR_COLOR: Int;
-    public static var CLEAR_DEPTH: Int;
-    public static var CLEAR_STENCIL: Int;
-    public static var MASK_NONE: Int;
-    public static var MASK_POSITION: Int;
-    public static var MASK_NORMAL: Int;
-    public static var MASK_COLOR: Int;
-    public static var MASK_TEXCOORD1: Int;
-    public static var MASK_TEXCOORD2: Int;
-    public static var MASK_CUBETEXCOORD1: Int;
-    public static var MASK_CUBETEXCOORD2: Int;
-    public static var MASK_TANGENT: Int;
-    public static var MASK_BLENDWEIGHTS: Int;
-    public static var MASK_BLENDINDICES: Int;
-    public static var MASK_INSTANCEMATRIX1: Int;
-    public static var MASK_INSTANCEMATRIX2: Int;
-    public static var MASK_INSTANCEMATRIX3: Int;
-    public static var MASK_DEFAULT: Int;
-    public static var NO_ELEMENT: Int;
+    public static var CLEAR_COLOR: Float;
+    public static var CLEAR_DEPTH: Float;
+    public static var CLEAR_STENCIL: Float;
+    public static var MASK_NONE: Float;
+    public static var MASK_POSITION: Float;
+    public static var MASK_NORMAL: Float;
+    public static var MASK_COLOR: Float;
+    public static var MASK_TEXCOORD1: Float;
+    public static var MASK_TEXCOORD2: Float;
+    public static var MASK_CUBETEXCOORD1: Float;
+    public static var MASK_CUBETEXCOORD2: Float;
+    public static var MASK_TANGENT: Float;
+    public static var MASK_BLENDWEIGHTS: Float;
+    public static var MASK_BLENDINDICES: Float;
+    public static var MASK_INSTANCEMATRIX1: Float;
+    public static var MASK_INSTANCEMATRIX2: Float;
+    public static var MASK_INSTANCEMATRIX3: Float;
+    public static var MASK_DEFAULT: Float;
+    public static var NO_ELEMENT: Float;
     public static var MAX_RENDERTARGETS: Int;
     public static var MAX_VERTEX_STREAMS: Int;
     public static var MAX_CONSTANT_REGISTERS: Int;
     public static var BITS_PER_COMPONENT: Int;
-    public static var SHADOW_MIN_QUANTIZE: Int;
-    public static var SHADOW_MIN_VIEW: Int;
+    public static var SHADOW_MIN_QUANTIZE: Float;
+    public static var SHADOW_MIN_VIEW: Float;
     public static var MAX_LIGHT_SPLITS: Int;
     public static var MAX_CASCADE_SPLITS: Int;
     public static var OCCLUSION_MIN_SIZE: Int;
     public static var OCCLUSION_DEFAULT_MAX_TRIANGLES: Int;
-    public static var OCCLUSION_RELATIVE_BIAS: Int;
+    public static var OCCLUSION_RELATIVE_BIAS: Float;
     public static var OCCLUSION_FIXED_BIAS: Int;
-    public static var OCCLUSION_X_SCALE: Int;
-    public static var OCCLUSION_Z_SCALE: Int;
+    public static var OCCLUSION_X_SCALE: Float;
+    public static var OCCLUSION_Z_SCALE: Float;
     public static var NUM_OCTANTS: Int;
-    public static var ROOT_INDEX: Int;
+    public static var ROOT_INDEX: Float;
     public static var SHADOW_MIN_PIXELS: Int;
     public static var INSTANCING_BUFFER_DEFAULT_SIZE: Int;
-    public static var MAX_VIEWPORT_TEXTURES: Int;
+    public static var MAX_VIEWPORT_TEXTURES: Float;
     public static var MAX_TEXTURE_QUALITY_LEVELS: Int;
 
 
     public static var CHANNEL_POSITION: Int;
     public static var CHANNEL_ROTATION: Int;
     public static var CHANNEL_SCALE: Int;
-    public static var MAX_BILLBOARDS: Int;
-    public static var DEFAULT_NUM_PARTICLES: Int;
-    public static var BONECOLLISION_NONE: Int;
-    public static var BONECOLLISION_SPHERE: Int;
-    public static var BONECOLLISION_BOX: Int;
+    public static var MAX_BILLBOARDS: Float;
+    public static var MODEL_VERSION: Float;
+    public static var DEFAULT_NUM_PARTICLES: Float;
+    public static var BONECOLLISION_NONE: Float;
+    public static var BONECOLLISION_SPHERE: Float;
+    public static var BONECOLLISION_BOX: Float;
 
 
-    public static var PIXEL_SIZE: Int;
+    public static var PIXEL_SIZE: Float;
 
 
     public static var STREAM_BUFFER_LENGTH: Int;
 
 
-    public static var DEFAULT_MAX_NETWORK_ANGULAR_VELOCITY: Int;
+    public static var DEFAULT_MAX_NETWORK_ANGULAR_VELOCITY: Float;
 
 
     public static var MOUSEB_LEFT: Int;
@@ -1231,11 +1226,11 @@ extern class Atomic {
     public static var CONTROLLER_AXIS_TRIGGERRIGHT: Int;
 
 
-    public static var UI_VERTEX_SIZE: Int;
+    public static var UI_VERTEX_SIZE: Float;
 
 
     public static var COLOR_LUT_SIZE: Int;
-    public static var PRIORITY_LAST: Int;
+    public static var PRIORITY_LAST: Float;
 
 
     public static var MSG_IDENTITY: Int;
@@ -1256,13 +1251,13 @@ extern class Atomic {
     public static var MSG_REMOTEEVENT: Int;
     public static var MSG_REMOTENODEEVENT: Int;
     public static var MSG_PACKAGEINFO: Int;
-    public static var CONTROLS_CONTENT_ID: Int;
-    public static var PACKAGE_FRAGMENT_SIZE: Int;
+    public static var CONTROLS_CONTENT_ID: Float;
+    public static var PACKAGE_FRAGMENT_SIZE: Float;
 
 
-    public static var SCAN_FILES: Int;
-    public static var SCAN_DIRS: Int;
-    public static var SCAN_HIDDEN: Int;
+    public static var SCAN_FILES: Float;
+    public static var SCAN_DIRS: Float;
+    public static var SCAN_HIDDEN: Float;
     public static var LOG_RAW: Int;
     public static var LOG_DEBUG: Int;
     public static var LOG_INFO: Int;
@@ -1433,7 +1428,7 @@ extern class Animatable extends Serializable {
 extern class Component extends Animatable {
 
     var enabled: Bool;
-    var id: Int;
+    var id: UInt;
     var node: Node;
     var scene: Scene;
 
@@ -1452,7 +1447,7 @@ extern class Component extends Animatable {
       // Remove from the scene node. If no other shared pointer references exist, causes immediate deletion.
     function remove(): Void;
       // Return ID.
-    function getID(): Int;
+    function getID(): UInt;
       // Return scene node.
     function getNode(): Node;
       // Return the scene the node belongs to.
@@ -1487,7 +1482,7 @@ extern class Node extends Animatable {
     var deepEnabled: Bool;
     var enabledRecursive: Bool;
     var parent: Node;
-    var id: Int;
+    var id: UInt;
     var nameHash: String;
     var scene: Scene;
     var up: Vector3;
@@ -1497,11 +1492,11 @@ extern class Node extends Animatable {
     var worldRight: Vector3;
     var worldScale: Vector3;
     var worldScale2D: Vector2;
-    var numComponents: Int;
-    var numNetworkComponents: Int;
+    var numComponents: UInt;
+    var numNetworkComponents: UInt;
     var netPositionAttr: Vector3;
-    var numPersistentChildren: Int;
-    var numPersistentComponents: Int;
+    var numPersistentChildren: UInt;
+    var numPersistentComponents: UInt;
     var positionSilent: Vector3;
     var rotationSilent: Quaternion;
     var scaleSilent: Vector3;
@@ -1573,9 +1568,9 @@ extern class Node extends Animatable {
       // Mark node and child nodes to need world transform recalculation. Notify listener components.
     function markDirty(): Void;
       // Create a child scene node (with specified ID if provided).
-    function createChild(?name: String, ?mode: CreateMode, ?id: Int): Node;
+    function createChild(?name: String, ?mode: CreateMode, ?id: UInt): Node;
       // Add a child scene node at a specific index. If index is not explicitly specified or is greater than current children size, append the new child at the end.
-    function addChild(node: Node, ?index: Int): Void;
+    function addChild(node: Node, ?index: UInt): Void;
       // Remove a child scene node.
     function removeChild(node: Node): Void;
       // Remove all child scene nodes.
@@ -1583,9 +1578,9 @@ extern class Node extends Animatable {
       // Remove child scene nodes that match criteria.
     function removeChildren(removeReplicated: Bool, removeLocal: Bool, recursive: Bool): Void;
       // Create a component to this node (with specified ID if provided).
-    function createComponent(type: String, ?mode: CreateMode, ?id: Int): Component;
+    function createComponent(type: String, ?mode: CreateMode, ?id: UInt): Component;
       // Create a component to this node if it does not exist already.
-    function getOrCreateComponent(type: String, ?mode: CreateMode, ?id: Int): Component;
+    function getOrCreateComponent(type: String, ?mode: CreateMode, ?id: UInt): Component;
       // Remove all components from this node.
     function removeAllComponents(): Void;
       // Remove components that match criteria.
@@ -1601,7 +1596,7 @@ extern class Node extends Animatable {
       // Remove listener component.
     function removeListener(component: Component): Void;
       // Return ID.
-    function getID(): Int;
+    function getID(): UInt;
       // Return name.
     function getName(): String;
       // Return name hash.
@@ -1657,19 +1652,19 @@ extern class Node extends Animatable {
       // Return whether transform has changed and world transform needs recalculation.
     function isDirty(): Bool;
       // Return number of child scene nodes.
-    function getNumChildren(?recursive: Bool): Int;
+    function getNumChildren(?recursive: Bool): UInt;
       // Return child scene node by name.
     function getChild(name: String, ?recursive: Bool): Node;
       // Return number of components.
-    function getNumComponents(): Int;
+    function getNumComponents(): UInt;
       // Return number of non-local components.
-    function getNumNetworkComponents(): Int;
+    function getNumNetworkComponents(): UInt;
       // Return component by type. If there are several, returns the first.
     function getComponent(type: String): Component;
       // Return whether has a specific component.
     function hasComponent(type: String): Bool;
       // Set ID. Called by Scene.
-    function setID(id: Int): Void;
+    function setID(id: UInt): Void;
       // Set scene. Called by Scene.
     function setScene(scene: Scene): Void;
       // Reset scene, ID and owner. Called by Scene.
@@ -1683,11 +1678,11 @@ extern class Node extends Animatable {
       // Mark node dirty in scene replication states.
     function markReplicationDirty(): Void;
       // Add a pre-created component.
-    function addComponent(component: Component, id: Int, mode: CreateMode): Void;
+    function addComponent(component: Component, id: UInt, mode: CreateMode): Void;
       // Calculate number of non-temporary child nodes.
-    function getNumPersistentChildren(): Int;
+    function getNumPersistentChildren(): UInt;
       // Calculate number of non-temporary components.
-    function getNumPersistentComponents(): Int;
+    function getNumPersistentComponents(): UInt;
       // Set position in parent space silently without marking the node & child nodes dirty. Used by animation code.
     function setPositionSilent(position: Vector3): Void;
       // Set position in parent space silently without marking the node & child nodes dirty. Used by animation code.
@@ -1755,7 +1750,7 @@ extern class Scene extends Node {
     var asyncProgress: Float;
     var asyncLoadMode: LoadMode;
     var fileName: String;
-    var checksum: Int;
+    var checksum: UInt;
     var varNamesAttr: String;
 
       // Construct.
@@ -1790,7 +1785,7 @@ extern class Scene extends Node {
       // Clear all registered node user variable hash reverse mappings.
     function unregisterAllVars(): Void;
       // Return node from the whole scene by ID, or null if not found.
-    function getNode(id: Int): Node;
+    function getNode(id: UInt): Node;
       // Return whether updates are enabled.
     function isUpdateEnabled(): Bool;
       // Return whether an asynchronous loading operation is in progress.
@@ -1802,7 +1797,7 @@ extern class Scene extends Node {
       // Return source file name.
     function getFileName(): String;
       // Return source file checksum.
-    function getChecksum(): Int;
+    function getChecksum(): UInt;
       // Return update time scale.
     function getTimeScale(): Float;
       // Return elapsed time in seconds.
@@ -1826,9 +1821,9 @@ extern class Scene extends Node {
       // Return threaded update flag.
     function isThreadedUpdate(): Bool;
       // Get free node ID, either non-local or local.
-    function getFreeNodeID(mode: CreateMode): Int;
+    function getFreeNodeID(mode: CreateMode): UInt;
       // Get free component ID, either non-local or local.
-    function getFreeComponentID(mode: CreateMode): Int;
+    function getFreeComponentID(mode: CreateMode): UInt;
       // Node added. Assign scene pointer and add to ID map.
     function nodeAdded(node: Node): Void;
       // Node removed. Remove from ID map.
@@ -1852,8 +1847,8 @@ extern class Scene extends Node {
 extern class Serializable extends AObject {
 
     var temporary: Bool;
-    var numAttributes: Int;
-    var numNetworkAttributes: Int;
+    var numAttributes: UInt;
+    var numNetworkAttributes: UInt;
 
       // Construct.
     function new();
@@ -1875,9 +1870,9 @@ extern class Serializable extends AObject {
       // Allocate network attribute state.
     function allocateNetworkState(): Void;
       // Return number of attributes.
-    function getNumAttributes(): Int;
+    function getNumAttributes(): UInt;
       // Return number of network replication attributes.
-    function getNumNetworkAttributes(): Int;
+    function getNumNetworkAttributes(): UInt;
       // Return whether is temporary.
     function isTemporary(): Bool;
       // Return whether an attribute's network updates are being intercepted.
@@ -1926,7 +1921,7 @@ extern class SplinePath extends Component {
     var speed: Float;
     var position: Vector3;
     var controlledNode: Node;
-    var controlledIdAttr: Int;
+    var controlledIdAttr: UInt;
 
       // Construct an Empty SplinePath.
     function new();
@@ -1938,7 +1933,7 @@ extern class SplinePath extends Component {
     @:overload(function(debug: DebugRenderer, depthTest: Bool): Void{})
     override function drawDebugGeometry(debug: DebugRenderer, depthTest: Bool): Void;
       // Add a Node to the SplinePath as a Control Point.
-    function addControlPoint(point: Node, ?index: Int): Void;
+    function addControlPoint(point: Node, ?index: UInt): Void;
       // Remove a Node Control Point from the SplinePath.
     function removeControlPoint(point: Node): Void;
       // Clear the Control Points from the SplinePath.
@@ -1968,9 +1963,9 @@ extern class SplinePath extends Component {
       // Returns whether the movement along the SplinePath is complete.
     function isFinished(): Bool;
       // Set Controlled Node ID attribute.
-    function setControlledIdAttr(value: Int): Void;
+    function setControlledIdAttr(value: UInt): Void;
       // Get Controlled Node ID attribute.
-    function getControlledIdAttr(): Int;
+    function getControlledIdAttr(): UInt;
 
 }
 
@@ -2055,8 +2050,8 @@ extern class Camera extends Component {
     var fillMode: FillMode;
     var zoom: Float;
     var lodBias: Float;
-    var viewMask: Int;
-    var viewOverrideFlags: Int;
+    var viewMask: UInt;
+    var viewOverrideFlags: UInt;
     var orthographic: Bool;
     var autoAspectRatio: Bool;
     var projectionOffset: Vector2;
@@ -2093,9 +2088,9 @@ extern class Camera extends Component {
       // Set LOD bias.
     function setLodBias(bias: Float): Void;
       // Set view mask. Will be and'ed with object's view mask to see if the object should be rendered.
-    function setViewMask(mask: Int): Void;
+    function setViewMask(mask: UInt): Void;
       // Set view override flags.
-    function setViewOverrideFlags(flags: Int): Void;
+    function setViewOverrideFlags(flags: UInt): Void;
       // Set orthographic mode enabled/disabled.
     function setOrthographic(enable: Bool): Void;
       // Set automatic aspect ratio based on viewport dimensions. Enabled by default.
@@ -2123,9 +2118,9 @@ extern class Camera extends Component {
       // Return LOD bias.
     function getLodBias(): Float;
       // Return view mask.
-    function getViewMask(): Int;
+    function getViewMask(): UInt;
       // Return view override flags.
-    function getViewOverrideFlags(): Int;
+    function getViewOverrideFlags(): UInt;
       // Return fill mode.
     function getFillMode(): FillMode;
       // Return orthographic flag.
@@ -2202,15 +2197,15 @@ extern class DebugRenderer extends Component {
 extern class Drawable extends Component {
 
     var updateGeometryType: UpdateGeometryType;
-    var numOccluderTriangles: Int;
+    var numOccluderTriangles: UInt;
     var drawDistance: Float;
     var shadowDistance: Float;
     var lodBias: Float;
-    var viewMask: Int;
-    var lightMask: Int;
-    var shadowMask: Int;
-    var zoneMask: Int;
-    var maxLights: Int;
+    var viewMask: UInt;
+    var lightMask: UInt;
+    var shadowMask: UInt;
+    var zoneMask: UInt;
+    var maxLights: UInt;
     var castShadows: Bool;
     var occluder: Bool;
     var occludee: Bool;
@@ -2218,7 +2213,7 @@ extern class Drawable extends Component {
     var worldBoundingBox: BoundingBox;
     var drawableFlags: Dynamic;
     var sortValue: Float;
-    var basePass: Int;
+    var basePass: UInt;
     var zone: Zone;
     var distance: Float;
     var lodDistance: Float;
@@ -2235,7 +2230,7 @@ extern class Drawable extends Component {
       // Return whether a geometry update is necessary, and if it can happen in a worker thread.
     function getUpdateGeometryType(): UpdateGeometryType;
       // Return number of occlusion geometry triangles.
-    function getNumOccluderTriangles(): Int;
+    function getNumOccluderTriangles(): UInt;
       // Visualize the component as debug geometry.
     @:overload(function(debug: DebugRenderer, depthTest: Bool): Void{})
     override function drawDebugGeometry(debug: DebugRenderer, depthTest: Bool): Void;
@@ -2246,15 +2241,15 @@ extern class Drawable extends Component {
       // Set LOD bias.
     function setLodBias(bias: Float): Void;
       // Set view mask. Is and'ed with camera's view mask to see if the object should be rendered.
-    function setViewMask(mask: Int): Void;
+    function setViewMask(mask: UInt): Void;
       // Set light mask. Is and'ed with light's and zone's light mask to see if the object should be lit.
-    function setLightMask(mask: Int): Void;
+    function setLightMask(mask: UInt): Void;
       // Set shadow mask. Is and'ed with light's light mask and zone's shadow mask to see if the object should be rendered to a shadow map.
-    function setShadowMask(mask: Int): Void;
+    function setShadowMask(mask: UInt): Void;
       // Set zone mask. Is and'ed with zone's zone mask to see if the object should belong to the zone.
-    function setZoneMask(mask: Int): Void;
+    function setZoneMask(mask: UInt): Void;
       // Set maximum number of per-pixel lights. Default 0 is unlimited.
-    function setMaxLights(num: Int): Void;
+    function setMaxLights(num: UInt): Void;
       // Set shadowcaster flag.
     function setCastShadows(enable: Bool): Void;
       // Set occlusion flag.
@@ -2276,15 +2271,15 @@ extern class Drawable extends Component {
       // Return LOD bias.
     function getLodBias(): Float;
       // Return view mask.
-    function getViewMask(): Int;
+    function getViewMask(): UInt;
       // Return light mask.
-    function getLightMask(): Int;
+    function getLightMask(): UInt;
       // Return shadow mask.
-    function getShadowMask(): Int;
+    function getShadowMask(): UInt;
       // Return zone mask.
-    function getZoneMask(): Int;
+    function getZoneMask(): UInt;
       // Return maximum number of per-pixel lights.
-    function getMaxLights(): Int;
+    function getMaxLights(): UInt;
       // Return shadowcaster flag.
     function getCastShadows(): Bool;
       // Return occluder flag.
@@ -2298,13 +2293,13 @@ extern class Drawable extends Component {
       // Set view-space depth bounds.
     function setMinMaxZ(minZ: Float, maxZ: Float): Void;
       // Mark in view without specifying a camera. Used for shadow casters.
-    function markInView(frameNumber: Int): Void;
+    function markInView(frameNumber: UInt): Void;
       // Sort and limit per-pixel lights to maximum allowed. Convert extra lights into vertex lights.
     function limitLights(): Void;
       // Sort and limit per-vertex lights to maximum allowed.
     function limitVertexLights(removeConvertedLights: Bool): Void;
       // Set base pass flag for a batch.
-    function setBasePass(batchIndex: Int): Void;
+    function setBasePass(batchIndex: UInt): Void;
       // Return current zone.
     function getZone(): Zone;
       // Return whether current zone is inconclusive or dirty due to the drawable moving.
@@ -2316,7 +2311,7 @@ extern class Drawable extends Component {
       // Return sorting value.
     function getSortValue(): Float;
       // Return whether has a base pass.
-    function hasBasePass(batchIndex: Int): Bool;
+    function hasBasePass(batchIndex: UInt): Bool;
       // Return the first added per-pixel light.
     function getFirstLight(): Light;
       // Return the minimum view-space depth.
@@ -2435,15 +2430,15 @@ extern class Light extends Drawable {
 @:native("Atomic.Material")
 extern class Material extends Resource {
 
-    var numTechniques: Int;
+    var numTechniques: UInt;
     var cullMode: CullMode;
     var shadowCullMode: CullMode;
     var fillMode: FillMode;
     var scene: Scene;
-    var auxViewFrameNumber: Int;
+    var auxViewFrameNumber: UInt;
     var occlusion: Bool;
     var specular: Bool;
-    var shaderParameterHash: Int;
+    var shaderParameterHash: UInt;
 
       // Construct.
     function new();
@@ -2452,9 +2447,9 @@ extern class Material extends Resource {
     @:overload(function(): Bool{})
     override function endLoad(): Bool;
       // Set number of techniques.
-    function setNumTechniques(num: Int): Void;
+    function setNumTechniques(num: UInt): Void;
       // Set technique.
-    function setTechnique(index: Int, tech: Technique, ?qualityLevel: Int, ?lodDistance: Float): Void;
+    function setTechnique(index: UInt, tech: Technique, ?qualityLevel: UInt, ?lodDistance: Float): Void;
     function setShaderParameterAnimation(name: String, animation: ValueAnimation, ?wrapMode: WrapMode, ?speed: Float): Void;
       // Set shader parameter animation wrap mode.
     function setShaderParameterAnimationWrapMode(name: String, wrapMode: WrapMode): Void;
@@ -2479,13 +2474,13 @@ extern class Material extends Resource {
       // Ensure that material techniques are listed in correct order.
     function sortTechniques(): Void;
       // Mark material for auxiliary view rendering.
-    function markForAuxView(frameNumber: Int): Void;
+    function markForAuxView(frameNumber: UInt): Void;
       // Return number of techniques.
-    function getNumTechniques(): Int;
+    function getNumTechniques(): UInt;
       // Return technique by index.
-    function getTechnique(index: Int): Technique;
+    function getTechnique(index: UInt): Technique;
       // Return pass by technique index and pass name.
-    function getPass(index: Int, passName: String): Pass;
+    function getPass(index: UInt, passName: String): Pass;
       // Return texture by unit.
     function getTexture(unit: TextureUnit): Texture;
       // Return shader parameter animation.
@@ -2501,7 +2496,7 @@ extern class Material extends Resource {
       // Return polygon fill mode.
     function getFillMode(): FillMode;
       // Return last auxiliary view rendered frame number.
-    function getAuxViewFrameNumber(): Int;
+    function getAuxViewFrameNumber(): UInt;
       // Return whether should render occlusion.
     function getOcclusion(): Bool;
       // Return whether should render specular.
@@ -2509,7 +2504,7 @@ extern class Material extends Resource {
       // Return the scene associated with the material for shader parameter animation updates.
     function getScene(): Scene;
       // Return shader parameter hash value. Used as an optimization to avoid setting shader parameters unnecessarily.
-    function getShaderParameterHash(): Int;
+    function getShaderParameterHash(): UInt;
       // Return name for texture unit.
     function getTextureUnitName(unit: TextureUnit): String;
 
@@ -2518,19 +2513,19 @@ extern class Material extends Resource {
 @:native("Atomic.Octree")
 extern class Octree extends Component {
 
-    var numLevels: Int;
+    var numLevels: UInt;
 
       // Construct.
     function new();
 
       // Set size and maximum subdivision levels. If octree is not empty, drawable objects will be temporarily moved to the root.
-    function setSize(box: BoundingBox, numLevels: Int): Void;
+    function setSize(box: BoundingBox, numLevels: UInt): Void;
       // Add a drawable manually.
     function addManualDrawable(drawable: Drawable): Void;
       // Remove a manually added drawable.
     function removeManualDrawable(drawable: Drawable): Void;
       // Return subdivision levels.
-    function getNumLevels(): Int;
+    function getNumLevels(): UInt;
       // Mark drawable object as requiring an update and a reinsertion.
     function queueUpdate(drawable: Drawable): Void;
       // Cancel drawable object's update.
@@ -2541,7 +2536,7 @@ extern class Octree extends Component {
 @:native("Atomic.Renderer")
 extern class Renderer extends AObject {
 
-    var numViewports: Int;
+    var numViewports: UInt;
     var hDRRendering: Bool;
     var specularLighting: Bool;
     var textureAnisotropy: Int;
@@ -2562,9 +2557,9 @@ extern class Renderer extends AObject {
     var mobileShadowBiasMul: Float;
     var mobileShadowBiasAdd: Float;
     var defaultRenderPath: RenderPath;
-    var numViews: Int;
-    var numPrimitives: Int;
-    var numBatches: Int;
+    var numViews: UInt;
+    var numPrimitives: UInt;
+    var numBatches: UInt;
     var defaultZone: Zone;
     var defaultMaterial: Material;
     var defaultLightRamp: Texture2D;
@@ -2577,9 +2572,9 @@ extern class Renderer extends AObject {
     function new();
 
       // Set number of backbuffer viewports to render.
-    function setNumViewports(num: Int): Void;
+    function setNumViewports(num: UInt): Void;
       // Set a backbuffer viewport.
-    function setViewport(index: Int, viewport: Viewport): Void;
+    function setViewport(index: UInt, viewport: Viewport): Void;
       // Set HDR rendering on/off.
     function setHDRRendering(enable: Bool): Void;
       // Set specular lighting on/off.
@@ -2621,9 +2616,9 @@ extern class Renderer extends AObject {
       // Force reload of shaders.
     function reloadShaders(): Void;
       // Return number of backbuffer viewports.
-    function getNumViewports(): Int;
+    function getNumViewports(): UInt;
       // Return backbuffer viewport by index.
-    function getViewport(index: Int): Viewport;
+    function getViewport(index: UInt): Viewport;
       // Return default renderpath.
     function getDefaultRenderPath(): RenderPath;
       // Return whether HDR rendering is enabled.
@@ -2665,19 +2660,19 @@ extern class Renderer extends AObject {
       // Return shadow depth bias addition for mobile platforms.
     function getMobileShadowBiasAdd(): Float;
       // Return number of views rendered.
-    function getNumViews(): Int;
+    function getNumViews(): UInt;
       // Return number of primitives rendered.
-    function getNumPrimitives(): Int;
+    function getNumPrimitives(): UInt;
       // Return number of batches rendered.
-    function getNumBatches(): Int;
+    function getNumBatches(): UInt;
       // Return number of geometries rendered.
-    function getNumGeometries(?allViews: Bool): Int;
+    function getNumGeometries(?allViews: Bool): UInt;
       // Return number of lights rendered.
-    function getNumLights(?allViews: Bool): Int;
+    function getNumLights(?allViews: Bool): UInt;
       // Return number of shadow maps rendered.
-    function getNumShadowMaps(?allViews: Bool): Int;
+    function getNumShadowMaps(?allViews: Bool): UInt;
       // Return number of occluders rendered.
-    function getNumOccluders(?allViews: Bool): Int;
+    function getNumOccluders(?allViews: Bool): UInt;
       // Return the default zone.
     function getDefaultZone(): Zone;
       // Return the default material.
@@ -2701,9 +2696,9 @@ extern class Renderer extends AObject {
       // Queue a viewport for rendering. Null surface means backbuffer.
     function queueViewport(renderTarget: RenderSurface, viewport: Viewport): Void;
       // Allocate a shadow map. If shadow map reuse is disabled, a different map is returned each time.
-    function getShadowMap(light: Light, camera: Camera, viewWidth: Int, viewHeight: Int): Texture2D;
+    function getShadowMap(light: Light, camera: Camera, viewWidth: UInt, viewHeight: UInt): Texture2D;
       // Allocate a rendertarget or depth-stencil texture for deferred rendering or postprocessing. Should only be called during actual rendering, not before.
-    function getScreenBuffer(width: Int, height: Int, format: Int, cubemap: Bool, filtered: Bool, srgb: Bool, ?persistentKey: Int): Texture;
+    function getScreenBuffer(width: Int, height: Int, format: UInt, cubemap: Bool, filtered: Bool, srgb: Bool, ?persistentKey: UInt): Texture;
       // Allocate a depth-stencil surface that does not need to be readable. Should only be called during actual rendering, not before.
     function getDepthStencil(width: Int, height: Int): RenderSurface;
       // Allocate a temporary shadow camera and a scene node for it. Is thread-safe.
@@ -2711,7 +2706,7 @@ extern class Renderer extends AObject {
       // Set cull mode while taking possible projection flipping into account.
     function setCullMode(mode: CullMode, camera: Camera): Void;
       // Ensure sufficient size of the instancing vertex buffer. Return true if successful.
-    function resizeInstancingBuffer(numInstances: Int): Bool;
+    function resizeInstancingBuffer(numInstances: UInt): Bool;
       // Save the screen buffer allocation status. Called by View.
     function saveScreenBufferAllocations(): Void;
       // Restore the screen buffer allocation status. Called by View.
@@ -2728,8 +2723,8 @@ extern class Renderer extends AObject {
 @:native("Atomic.RenderPath")
 extern class RenderPath extends RefCounted {
 
-    var numRenderTargets: Int;
-    var numCommands: Int;
+    var numRenderTargets: UInt;
+    var numCommands: UInt;
 
       // Construct.
     function new();
@@ -2747,20 +2742,20 @@ extern class RenderPath extends RefCounted {
       // Remove rendertargets by tag name.
     function removeRenderTargets(tag: String): Void;
       // Remove a command by index.
-    function removeCommand(index: Int): Void;
+    function removeCommand(index: UInt): Void;
       // Remove commands by tag name.
     function removeCommands(tag: String): Void;
       // Return number of rendertargets.
-    function getNumRenderTargets(): Int;
+    function getNumRenderTargets(): UInt;
       // Return number of commands.
-    function getNumCommands(): Int;
+    function getNumCommands(): UInt;
 
 }
 
 @:native("Atomic.Shader")
 extern class Shader extends Resource {
 
-    var timeStamp: Int;
+    var timeStamp: UInt;
 
       // Construct.
     function new();
@@ -2773,7 +2768,7 @@ extern class Shader extends Resource {
       // Return either vertex or pixel shader source code.
     function getSourceCode(type: ShaderType): String;
       // Return the latest timestamp of the shader code and its includes.
-    function getTimeStamp(): Int;
+    function getTimeStamp(): UInt;
 
 }
 
@@ -2802,8 +2797,8 @@ extern class Pass extends RefCounted {
     var vertexShaderDefines: String;
     var pixelShaderDefines: String;
     var name: String;
-    var index: Int;
-    var shadersLoadedFrameNumber: Int;
+    var index: UInt;
+    var shadersLoadedFrameNumber: UInt;
 
       // Construct.
     function new(passName: String);
@@ -2831,11 +2826,11 @@ extern class Pass extends RefCounted {
       // Reset shader pointers.
     function releaseShaders(): Void;
       // Mark shaders loaded this frame.
-    function markShadersLoaded(frameNumber: Int): Void;
+    function markShadersLoaded(frameNumber: UInt): Void;
       // Return pass name.
     function getName(): String;
       // Return pass index. This is used for optimal render-time pass queries that avoid map lookups.
-    function getIndex(): Int;
+    function getIndex(): UInt;
       // Return blend mode.
     function getBlendMode(): BlendMode;
       // Return depth compare mode.
@@ -2843,7 +2838,7 @@ extern class Pass extends RefCounted {
       // Return pass lighting mode.
     function getLightingMode(): PassLightingMode;
       // Return last shaders loaded frame number.
-    function getShadersLoadedFrameNumber(): Int;
+    function getShadersLoadedFrameNumber(): UInt;
       // Return depth write mode.
     function getDepthWrite(): Bool;
       // Return alpha masking hint.
@@ -2863,7 +2858,7 @@ extern class Pass extends RefCounted {
 extern class Technique extends Resource {
 
     var isDesktop: Bool;
-    var numPasses: Int;
+    var numPasses: UInt;
 
       // Construct.
     function new();
@@ -2879,9 +2874,9 @@ extern class Technique extends Resource {
       // Return whether technique is supported by the current hardware.
     function isSupported(): Bool;
       // Return number of passes.
-    function getNumPasses(): Int;
+    function getNumPasses(): UInt;
       // Return a pass type index by name. Allocate new if not used yet.
-    function getPassIndex(passName: String): Int;
+    function getPassIndex(passName: String): UInt;
 
 }
 
@@ -3061,7 +3056,7 @@ extern class Graphics extends AObject {
     var flushGPU: Bool;
     var orientations: String;
     var defaultTextureFilterMode: TextureFilterMode;
-    var textureAnisotropy: Int;
+    var textureAnisotropy: UInt;
     var viewport: IntRect;
     var blendMode: BlendMode;
     var colorWrite: Bool;
@@ -3079,11 +3074,11 @@ extern class Graphics extends AObject {
     var borderless: Bool;
     var vSync: Bool;
     var tripleBuffer: Bool;
-    var numPrimitives: Int;
-    var numBatches: Int;
-    var dummyColorFormat: Int;
-    var shadowMapFormat: Int;
-    var hiresShadowMapFormat: Int;
+    var numPrimitives: UInt;
+    var numBatches: UInt;
+    var dummyColorFormat: UInt;
+    var shadowMapFormat: UInt;
+    var hiresShadowMapFormat: UInt;
     var instancingSupport: Bool;
     var lightPrepassSupport: Bool;
     var deferredSupport: Bool;
@@ -3104,29 +3099,38 @@ extern class Graphics extends AObject {
     var stencilPass: StencilOp;
     var stencilFail: StencilOp;
     var stencilZFail: StencilOp;
-    var stencilRef: Int;
-    var stencilCompareMask: Int;
-    var stencilWriteMask: Int;
+    var stencilRef: UInt;
+    var stencilCompareMask: UInt;
+    var stencilWriteMask: UInt;
     var useClipPlane: Bool;
     var renderTargetDimensions: IntVector2;
-    var alphaFormat: Int;
-    var luminanceFormat: Int;
-    var luminanceAlphaFormat: Int;
-    var rGBFormat: Int;
-    var rGBAFormat: Int;
-    var rGBA16Format: Int;
-    var rGBAFloat16Format: Int;
-    var rGBAFloat32Format: Int;
-    var rG16Format: Int;
-    var rGFloat16Format: Int;
-    var rGFloat32Format: Int;
-    var float16Format: Int;
-    var float32Format: Int;
-    var linearDepthFormat: Int;
-    var depthStencilFormat: Int;
-    var readableDepthFormat: Int;
+    var alphaFormat: UInt;
+    var luminanceFormat: UInt;
+    var luminanceAlphaFormat: UInt;
+    var rGBFormat: UInt;
+    var rGBAFormat: UInt;
+    var rGBA16Format: UInt;
+    var rGBAFloat16Format: UInt;
+    var rGBAFloat32Format: UInt;
+    var rG16Format: UInt;
+    var rGFloat16Format: UInt;
+    var rGFloat32Format: UInt;
+    var float16Format: UInt;
+    var float32Format: UInt;
+    var linearDepthFormat: UInt;
+    var depthStencilFormat: UInt;
+    var readableDepthFormat: UInt;
     var pixelUVOffset: Vector2;
-    var maxBones: Int;
+    var maxBones: UInt;
+    #if Mac
+    var forceGL2: Bool;
+    var textureForUpdate: Texture;
+    var anisotropySupport: Bool;
+    var depthTexture: Texture2D;
+    var vbo: UInt;
+    var ubo: UInt;
+    var gL3Support: Bool;
+    #end
 
       // Construct.
     function new();
@@ -3158,11 +3162,11 @@ extern class Graphics extends AObject {
       // End frame rendering and swap buffers.
     function endFrame(): Void;
       // Clear any or all of rendertarget, depth buffer and stencil buffer.
-    function clear(flags: Int, ?color: Color, ?depth: Float, ?stencil: Int): Void;
+    function clear(flags: UInt, ?color: Color, ?depth: Float, ?stencil: UInt): Void;
       // Resolve multisampled backbuffer to a texture rendertarget. The texture's size should match the viewport size.
     function resolveToTexture(destination: Texture2D, viewport: IntRect): Bool;
       // Draw indexed, instanced geometry. An instancing vertex buffer must be set.
-    function drawInstanced(type: PrimitiveType, indexStart: Int, indexCount: Int, minVertex: Int, vertexCount: Int, instanceCount: Int): Void;
+    function drawInstanced(type: PrimitiveType, indexStart: UInt, indexCount: UInt, minVertex: UInt, vertexCount: UInt, instanceCount: UInt): Void;
       // Set shaders.
     function setShaders(vs: ShaderVariation, ps: ShaderVariation): Void;
       // Check whether a shader parameter exists on the currently set shaders.
@@ -3176,15 +3180,15 @@ extern class Graphics extends AObject {
       // Clear remembered transform shader parameter sources.
     function clearTransformSources(): Void;
       // Set texture.
-    function setTexture(index: Int, texture: Texture): Void;
+    function setTexture(index: UInt, texture: Texture): Void;
       // Set default texture filtering mode.
     function setDefaultTextureFilterMode(mode: TextureFilterMode): Void;
       // Set texture anisotropy.
-    function setTextureAnisotropy(level: Int): Void;
+    function setTextureAnisotropy(level: UInt): Void;
       // Reset all rendertargets, depth-stencil surface and viewport.
     function resetRenderTargets(): Void;
       // Reset specific rendertarget.
-    function resetRenderTarget(index: Int): Void;
+    function resetRenderTarget(index: UInt): Void;
       // Reset depth-stencil surface.
     function resetDepthStencil(): Void;
       // Set viewport.
@@ -3204,7 +3208,7 @@ extern class Graphics extends AObject {
       // Set polygon fill mode.
     function setFillMode(mode: FillMode): Void;
       // Set stencil test.
-    function setStencilTest(enable: Bool, ?mode: CompareMode, ?pass: StencilOp, ?fail: StencilOp, ?zFail: StencilOp, ?stencilRef: Int, ?compareMask: Int, ?writeMask: Int): Void;
+    function setStencilTest(enable: Bool, ?mode: CompareMode, ?pass: StencilOp, ?fail: StencilOp, ?zFail: StencilOp, ?stencilRef: UInt, ?compareMask: UInt, ?writeMask: UInt): Void;
       // Begin dumping shader variation names to an XML file for precaching.
     function beginDumpShaders(fileName: String): Void;
       // End dumping shader variations names.
@@ -3242,15 +3246,15 @@ extern class Graphics extends AObject {
       // Return whether Direct3D device is lost, and can not yet render. This happens during fullscreen resolution switching.
     function isDeviceLost(): Bool;
       // Return number of primitives drawn this frame.
-    function getNumPrimitives(): Int;
+    function getNumPrimitives(): UInt;
       // Return number of batches drawn this frame.
-    function getNumBatches(): Int;
+    function getNumBatches(): UInt;
       // Return dummy color texture format for shadow maps. Is "NULL" (consume no video memory) if supported.
-    function getDummyColorFormat(): Int;
+    function getDummyColorFormat(): UInt;
       // Return shadow map depth texture format, or 0 if not supported.
-    function getShadowMapFormat(): Int;
+    function getShadowMapFormat(): UInt;
       // Return 24-bit shadow map depth texture format, or 0 if not supported.
-    function getHiresShadowMapFormat(): Int;
+    function getHiresShadowMapFormat(): UInt;
       // Return whether hardware instancing is supported..
     function getInstancingSupport(): Bool;
       // Return whether light pre-pass rendering is supported.
@@ -3278,17 +3282,17 @@ extern class Graphics extends AObject {
       // Return texture unit name by index.
     function getTextureUnitName(unit: TextureUnit): String;
       // Return current texture by texture unit index.
-    function getTexture(index: Int): Texture;
+    function getTexture(index: UInt): Texture;
       // Return default texture filtering mode.
     function getDefaultTextureFilterMode(): TextureFilterMode;
       // Return current rendertarget by index.
-    function getRenderTarget(index: Int): RenderSurface;
+    function getRenderTarget(index: UInt): RenderSurface;
       // Return current depth-stencil surface.
     function getDepthStencil(): RenderSurface;
       // Return the viewport coordinates.
     function getViewport(): IntRect;
       // Return texture anisotropy.
-    function getTextureAnisotropy(): Int;
+    function getTextureAnisotropy(): UInt;
       // Return blending mode.
     function getBlendMode(): BlendMode;
       // Return whether color write is enabled.
@@ -3320,11 +3324,11 @@ extern class Graphics extends AObject {
       // Return stencil operation to do if depth compare fails.
     function getStencilZFail(): StencilOp;
       // Return stencil reference value.
-    function getStencilRef(): Int;
+    function getStencilRef(): UInt;
       // Return stencil compare bitmask.
-    function getStencilCompareMask(): Int;
+    function getStencilCompareMask(): UInt;
       // Return stencil write bitmask.
-    function getStencilWriteMask(): Int;
+    function getStencilWriteMask(): UInt;
       // Return whether a custom clipping plane is in use.
     function getUseClipPlane(): Bool;
       // Return rendertarget width and height.
@@ -3342,48 +3346,77 @@ extern class Graphics extends AObject {
       // Clean up shader programs when a shader variation is released or destroyed.
     function cleanupShaderPrograms(variation: ShaderVariation): Void;
       // Return the API-specific alpha texture format.
-    function getAlphaFormat(): Int;
+    function getAlphaFormat(): UInt;
       // Return the API-specific luminance texture format.
-    function getLuminanceFormat(): Int;
+    function getLuminanceFormat(): UInt;
       // Return the API-specific luminance alpha texture format.
-    function getLuminanceAlphaFormat(): Int;
+    function getLuminanceAlphaFormat(): UInt;
       // Return the API-specific RGB texture format.
-    function getRGBFormat(): Int;
+    function getRGBFormat(): UInt;
       // Return the API-specific RGBA texture format.
-    function getRGBAFormat(): Int;
+    function getRGBAFormat(): UInt;
       // Return the API-specific RGBA 16-bit texture format.
-    function getRGBA16Format(): Int;
+    function getRGBA16Format(): UInt;
       // Return the API-specific RGBA 16-bit float texture format.
-    function getRGBAFloat16Format(): Int;
+    function getRGBAFloat16Format(): UInt;
       // Return the API-specific RGBA 32-bit float texture format.
-    function getRGBAFloat32Format(): Int;
+    function getRGBAFloat32Format(): UInt;
       // Return the API-specific RG 16-bit texture format.
-    function getRG16Format(): Int;
+    function getRG16Format(): UInt;
       // Return the API-specific RG 16-bit float texture format.
-    function getRGFloat16Format(): Int;
+    function getRGFloat16Format(): UInt;
       // Return the API-specific RG 32-bit float texture format.
-    function getRGFloat32Format(): Int;
+    function getRGFloat32Format(): UInt;
       // Return the API-specific single channel 16-bit float texture format.
-    function getFloat16Format(): Int;
+    function getFloat16Format(): UInt;
       // Return the API-specific single channel 32-bit float texture format.
-    function getFloat32Format(): Int;
+    function getFloat32Format(): UInt;
       // Return the API-specific linear depth texture format.
-    function getLinearDepthFormat(): Int;
+    function getLinearDepthFormat(): UInt;
       // Return the API-specific hardware depth-stencil texture format.
-    function getDepthStencilFormat(): Int;
+    function getDepthStencilFormat(): UInt;
       // Return the API-specific readable hardware depth format, or 0 if not supported.
-    function getReadableDepthFormat(): Int;
+    function getReadableDepthFormat(): UInt;
       // Return UV offset required for pixel perfect rendering.
     function getPixelUVOffset(): Vector2;
       // Return maximum number of supported bones for skinning.
-    function getMaxBones(): Int;
+    function getMaxBones(): UInt;
+
+    #if Mac
+    // Set forced use of OpenGL 2 even if OpenGL 3 is available. Must be called before setting the screen mode for the first time. Default false.
+    function setForceGL2(enable: Bool): Void;
+    // Bind texture unit 0 for update. Called by Texture.
+    function setTextureForUpdate(texture: Texture): Void;
+    // Dirty texture parameters of all textures (when global settings change.)
+    function setTextureParametersDirty(): Void;
+    // Return whether OpenGL 2 use is forced.
+    function getForceGL2(): Bool;
+    // Return whether anisotropic texture filtering is supported.
+    function getAnisotropySupport(): Bool;
+    // Return readable depth-stencil texture. Not created automatically on OpenGL.
+    function getDepthTexture(): Texture2D;
+      // Clean up a render surface from all FBOs.
+    function cleanupRenderSurface(surface: RenderSurface): Void;
+      // Release/clear GPU objects and optionally close the window.
+    function release(clearGPUObjects: Bool, closeWindow: Bool): Void;
+      // Restore GPU objects and reinitialize state. Requires an open window.
+    function restore(): Void;
+    // Mark the FBO needing an update.
+    function markFBODirty(): Void;
+    // Bind a VBO, avoiding redundant operation.
+    function setVBO(object: UInt): Void;
+    // Bind a UBO, avoiding redundant operation.
+    function setUBO(object: UInt): Void;
+    // Return whether is using an OpenGL 3 context.
+    function getGL3Support(): Bool;
+    #end
 
 }
 
 @:native("Atomic.RenderSurface")
 extern class RenderSurface extends RefCounted {
 
-    var numViewports: Int;
+    var numViewports: UInt;
     var updateMode: RenderSurfaceUpdateMode;
     var linkedRenderTarget: RenderSurface;
     var linkedDepthStencil: RenderSurface;
@@ -3391,14 +3424,18 @@ extern class RenderSurface extends RefCounted {
     var width: Int;
     var height: Int;
     var usage: TextureUsage;
+    #if Mac
+    var renderBuffer: UInt;
+    var target: UInt;
+    #end
 
       // Construct with parent texture.
     function new(parentTexture: Texture);
 
       // Set number of viewports.
-    function setNumViewports(num: Int): Void;
+    function setNumViewports(num: UInt): Void;
       // Set viewport.
-    function setViewport(index: Int, viewport: Viewport): Void;
+    function setViewport(index: UInt, viewport: Viewport): Void;
       // Set viewport update mode. Default is to update when visible.
     function setUpdateMode(mode: RenderSurfaceUpdateMode): Void;
       // Set linked color rendertarget.
@@ -3418,9 +3455,9 @@ extern class RenderSurface extends RefCounted {
       // Return usage.
     function getUsage(): TextureUsage;
       // Return number of viewports.
-    function getNumViewports(): Int;
+    function getNumViewports(): UInt;
       // Return viewport by index.
-    function getViewport(index: Int): Viewport;
+    function getViewport(index: UInt): Viewport;
       // Return viewport update mode.
     function getUpdateMode(): RenderSurfaceUpdateMode;
       // Return linked color rendertarget.
@@ -3429,6 +3466,18 @@ extern class RenderSurface extends RefCounted {
     function getLinkedDepthStencil(): RenderSurface;
       // Clear update flag. Called by Renderer.
     function wasUpdated(): Void;
+    #if Mac
+    // Create a renderbuffer. Return true if successful.
+    function createRenderBuffer(width: UInt, height: UInt, format: UInt): Bool;
+      // Handle device loss.
+    function onDeviceLost(): Void;
+    // Return renderbuffer if created.
+    function getRenderBuffer(): UInt;
+    // Set surface's OpenGL target.
+    function setTarget(target: UInt): Void;
+      // Return surface's OpenGL target.
+    function getTarget(): UInt;
+    #end
 
 }
 
@@ -3465,36 +3514,45 @@ extern class ShaderVariation extends RefCounted {
     function getFullName(): String;
       // Return compile error/warning string.
     function getCompilerOutput(): String;
+    #if Windows
       // Return whether uses a parameter.
     function hasParameter(param: String): Bool;
       // Return whether uses a texture unit (only for pixel shaders.)
     function hasTextureUnit(unit: TextureUnit): Bool;
-
+    #end
+    #if Mac
+    // Mark the GPU resource destroyed on context destruction.
+    function onDeviceLost(): Void;
+    #end
 }
 
 @:native("Atomic.Texture")
 extern class Texture extends Resource {
 
-    var numLevels: Int;
+    var numLevels: UInt;
     var filterMode: TextureFilterMode;
     var shadowCompare: Bool;
     var borderColor: Color;
     var srgb: Bool;
     var backupTexture: Texture;
-    var format: Int;
-    var levels: Int;
+    var format: UInt;
+    var levels: UInt;
     var width: Int;
     var height: Int;
     var depth: Int;
     var usage: TextureUsage;
-    var components: Int;
+    var components: UInt;
     var parameters: XMLFile;
+    #if Mac
+    var target: UInt;
+    var parametersDirty: Bool;
+    #end
 
       // Construct.
     function new();
 
       // Set number of requested mip levels. Needs to be called before setting size.
-    function setNumLevels(levels: Int): Void;
+    function setNumLevels(levels: UInt): Void;
       // Set filtering mode.
     function setFilterMode(filter: TextureFilterMode): Void;
       // Set addressing mode by texture coordinate.
@@ -3510,11 +3568,11 @@ extern class Texture extends Resource {
       // Set mip levels to skip on a quality setting when loading. Ensures higher quality levels do not skip more.
     function setMipsToSkip(quality: Int, mips: Int): Void;
       // Return texture format.
-    function getFormat(): Int;
+    function getFormat(): UInt;
       // Return whether the texture format is compressed.
     function isCompressed(): Bool;
       // Return number of mip levels.
-    function getLevels(): Int;
+    function getLevels(): UInt;
       // Return width.
     function getWidth(): Int;
       // Return height.
@@ -3536,20 +3594,35 @@ extern class Texture extends Resource {
       // Return mip levels to skip on a quality setting when loading.
     function getMipsToSkip(quality: Int): Int;
       // Return mip level width, or 0 if level does not exist.
-    function getLevelWidth(level: Int): Int;
+    function getLevelWidth(level: UInt): Int;
       // Return mip level width, or 0 if level does not exist.
-    function getLevelHeight(level: Int): Int;
+    function getLevelHeight(level: UInt): Int;
       // Return mip level depth, or 0 if level does not exist.
-    function getLevelDepth(level: Int): Int;
+    function getLevelDepth(level: UInt): Int;
       // Return texture usage type.
     function getUsage(): TextureUsage;
       // Return data size in bytes for a pixel or block row.
-    function getRowDataSize(width: Int): Int;
+    function getRowDataSize(width: Int): UInt;
       // Return number of image components required to receive pixel data from GetData(), or 0 for compressed images.
-    function getComponents(): Int;
+    function getComponents(): UInt;
       // Set additional parameters from an XML file.
     function setParameters(xml: XMLFile): Void;
-
+    #if Mac
+    // Dirty the parameters.
+    function setParametersDirty(): Void;
+      // Update changed parameters to OpenGL. Called by Graphics when binding the texture.
+    function updateParameters(): Void;
+      // Return texture's OpenGL target.
+    function getTarget(): UInt;
+    // Return whether parameters are dirty.
+    function getParametersDirty(): Bool;
+    // Return the corresponding SRGB texture format if supported. If not supported, return format unchanged.
+    function getSRGBFormat(format: UInt): UInt;
+    // Return the non-internal texture format corresponding to an OpenGL internal format.
+    function getExternalFormat(format: UInt): UInt;
+      // Return the data type corresponding to an OpenGL internal format.
+    function getDataType(format: UInt): UInt;
+    #end
 }
 
 @:native("Atomic.Texture2D")
@@ -3570,7 +3643,7 @@ extern class Texture2D extends Texture {
       // Release texture.
     function release(): Void;
       // Set size, format and usage. Zero size will follow application window size. Return true if successful.
-    function setSize(width: Int, height: Int, format: Int, ?usage: TextureUsage): Bool;
+    function setSize(width: Int, height: Int, format: UInt, ?usage: TextureUsage): Bool;
       // Return render surface.
     function getRenderSurface(): RenderSurface;
 
@@ -3594,7 +3667,7 @@ extern class Texture3D extends Texture {
       // Release texture.
     function release(): Void;
       // Set size, format and usage. Zero size will follow application window size. Return true if successful.
-    function setSize(width: Int, height: Int, depth: Int, format: Int, ?usage: TextureUsage): Bool;
+    function setSize(width: Int, height: Int, depth: Int, format: UInt, ?usage: TextureUsage): Bool;
       // Return render surface.
     function getRenderSurface(): RenderSurface;
 
@@ -3616,7 +3689,7 @@ extern class TextureCube extends Texture {
       // Release texture.
     function release(): Void;
       // Set size, format and usage. Return true if successful.
-    function setSize(size: Int, format: Int, ?usage: TextureUsage): Bool;
+    function setSize(size: Int, format: UInt, ?usage: TextureUsage): Bool;
       // Return render surface for one face.
     function getRenderSurface(face: CubeMapFace): RenderSurface;
 
@@ -3634,8 +3707,8 @@ extern class AnimatedModel extends StaticModel {
 
     var animationLodBias: Float;
     var updateInvisible: Bool;
-    var numAnimationStates: Int;
-    var numMorphs: Int;
+    var numAnimationStates: UInt;
+    var numMorphs: UInt;
     var boneCreationEnabled: Bool;
 
       // Construct.
@@ -3664,13 +3737,13 @@ extern class AnimatedModel extends StaticModel {
       // Reset all vertex morphs to zero.
     function resetMorphWeights(): Void;
       // Return number of animation states.
-    function getNumAnimationStates(): Int;
+    function getNumAnimationStates(): UInt;
       // Return animation LOD bias.
     function getAnimationLodBias(): Float;
       // Return whether to update animation when not visible.
     function getUpdateInvisible(): Bool;
       // Return number of vertex morphs.
-    function getNumMorphs(): Int;
+    function getNumMorphs(): UInt;
       // Return whether is the master (first) animated model.
     function isMaster(): Bool;
       // Globally enable/disable bone creation, useful for when in the editor
@@ -3683,9 +3756,9 @@ extern class Animation extends Resource {
 
     var animationName: String;
     var length: Float;
-    var numTriggers: Int;
+    var numTriggers: UInt;
     var animationNameHash: String;
-    var numTracks: Int;
+    var numTracks: UInt;
 
       // Construct.
     function new();
@@ -3695,11 +3768,11 @@ extern class Animation extends Resource {
       // Set animation length.
     function setLength(length: Float): Void;
       // Remove a trigger point by index.
-    function removeTrigger(index: Int): Void;
+    function removeTrigger(index: UInt): Void;
       // Remove all trigger points.
     function removeAllTriggers(): Void;
       // Resize trigger point vector.
-    function setNumTriggers(num: Int): Void;
+    function setNumTriggers(num: UInt): Void;
       // Return animation name.
     function getAnimationName(): String;
       // Return animation name hash.
@@ -3707,9 +3780,9 @@ extern class Animation extends Resource {
       // Return animation length.
     function getLength(): Float;
       // Return number of animation tracks.
-    function getNumTracks(): Int;
+    function getNumTracks(): UInt;
       // Return number of animation trigger points.
-    function getNumTriggers(): Int;
+    function getNumTriggers(): UInt;
 
 }
 
@@ -3840,7 +3913,7 @@ extern class AnimationState extends RefCounted {
 extern class BillboardSet extends Drawable {
 
     var material: Material;
-    var numBillboards: Int;
+    var numBillboards: UInt;
     var relative: Bool;
     var scaled: Bool;
     var sorted: Bool;
@@ -3856,7 +3929,7 @@ extern class BillboardSet extends Drawable {
       // Set material.
     function setMaterial(material: Material): Void;
       // Set number of billboards.
-    function setNumBillboards(num: Int): Void;
+    function setNumBillboards(num: UInt): Void;
       // Set whether billboards are relative to the scene node. Default true.
     function setRelative(enable: Bool): Void;
       // Set whether scene node scale affects billboards' size. Default true.
@@ -3872,7 +3945,7 @@ extern class BillboardSet extends Drawable {
       // Return material.
     function getMaterial(): Material;
       // Return number of billboards.
-    function getNumBillboards(): Int;
+    function getNumBillboards(): UInt;
       // Return whether billboards are relative to the scene node.
     function isRelative(): Bool;
       // Return whether scene node scale affects billboards' size.
@@ -3889,23 +3962,23 @@ extern class BillboardSet extends Drawable {
 @:native("Atomic.CustomGeometry")
 extern class CustomGeometry extends Drawable {
 
-    var numGeometries: Int;
+    var numGeometries: UInt;
     var dynamik: Bool;
 
       // Construct.
     function new();
 
       // Return number of occlusion geometry triangles.
-    @:overload(function(): Int{})
-    override function getNumOccluderTriangles(): Int;
+    @:overload(function(): UInt{})
+    override function getNumOccluderTriangles(): UInt;
       // Clear all geometries.
     function clear(): Void;
       // Set number of geometries.
-    function setNumGeometries(num: Int): Void;
+    function setNumGeometries(num: UInt): Void;
       // Set vertex buffer dynamic mode. A dynamic buffer should be faster to update frequently. Effective at the next Commit() call.
     function setDynamic(enable: Bool): Void;
       // Begin defining a geometry. Clears existing vertices in that index.
-    function beginGeometry(index: Int, type: PrimitiveType): Void;
+    function beginGeometry(index: UInt, type: PrimitiveType): Void;
       // Define a vertex position. This begins a new vertex.
     function defineVertex(position: Vector3): Void;
       // Define a vertex normal.
@@ -3917,17 +3990,17 @@ extern class CustomGeometry extends Drawable {
       // Define a vertex tangent.
     function defineTangent(tangent: Vector4): Void;
       // Set the primitive type, number of vertices and elements in a geometry, after which the vertices can be edited with GetVertex(). An alternative to BeginGeometry() / DefineVertex().
-    function defineGeometry(index: Int, type: PrimitiveType, numVertices: Int, hasNormals: Bool, hasColors: Bool, hasTexCoords: Bool, hasTangents: Bool): Void;
+    function defineGeometry(index: UInt, type: PrimitiveType, numVertices: UInt, hasNormals: Bool, hasColors: Bool, hasTexCoords: Bool, hasTangents: Bool): Void;
       // Update vertex buffer and calculate the bounding box. Call after finishing defining geometry.
     function commit(): Void;
       // Return number of geometries.
-    function getNumGeometries(): Int;
+    function getNumGeometries(): UInt;
       // Return number of vertices in a geometry.
-    function getNumVertices(index: Int): Int;
+    function getNumVertices(index: UInt): UInt;
       // Return whether vertex buffer dynamic mode is enabled.
     function isDynamic(): Bool;
       // Return material by geometry index.
-    function getMaterial(?index: Int): Material;
+    function getMaterial(?index: UInt): Material;
 
 }
 
@@ -3935,11 +4008,11 @@ extern class CustomGeometry extends Drawable {
 extern class DecalSet extends Drawable {
 
     var material: Material;
-    var maxVertices: Int;
-    var maxIndices: Int;
-    var numDecals: Int;
-    var numVertices: Int;
-    var numIndices: Int;
+    var maxVertices: UInt;
+    var maxIndices: UInt;
+    var numDecals: UInt;
+    var numVertices: UInt;
+    var numIndices: UInt;
 
       // Construct.
     function new();
@@ -3956,27 +4029,27 @@ extern class DecalSet extends Drawable {
       // Set material. The material should use a small negative depth bias to avoid Z-fighting.
     function setMaterial(material: Material): Void;
       // Set maximum number of decal vertices.
-    function setMaxVertices(num: Int): Void;
+    function setMaxVertices(num: UInt): Void;
       // Set maximum number of decal vertex indices.
-    function setMaxIndices(num: Int): Void;
+    function setMaxIndices(num: UInt): Void;
       // Add a decal at world coordinates, using a target drawable's geometry for reference. If the decal needs to move with the target, the decal component should be created to the target's node. Return true if successful.
-    function addDecal(target: Drawable, worldPosition: Vector3, worldRotation: Quaternion, size: Float, aspectRatio: Float, depth: Float, topLeftUV: Vector2, bottomRightUV: Vector2, ?timeToLive: Float, ?normalCutoff: Float, ?subGeometry: Int): Bool;
+    function addDecal(target: Drawable, worldPosition: Vector3, worldRotation: Quaternion, size: Float, aspectRatio: Float, depth: Float, topLeftUV: Vector2, bottomRightUV: Vector2, ?timeToLive: Float, ?normalCutoff: Float, ?subGeometry: UInt): Bool;
       // Remove n oldest decals.
-    function removeDecals(num: Int): Void;
+    function removeDecals(num: UInt): Void;
       // Remove all decals.
     function removeAllDecals(): Void;
       // Return material.
     function getMaterial(): Material;
       // Return number of decals.
-    function getNumDecals(): Int;
+    function getNumDecals(): UInt;
       // Retur number of vertices in the decals.
-    function getNumVertices(): Int;
+    function getNumVertices(): UInt;
       // Retur number of vertex indices in the decals.
-    function getNumIndices(): Int;
+    function getNumIndices(): UInt;
       // Return maximum number of decal vertices.
-    function getMaxVertices(): Int;
+    function getMaxVertices(): UInt;
       // Return maximum number of decal vertex indices.
-    function getMaxIndices(): Int;
+    function getMaxIndices(): UInt;
 
 }
 
@@ -3984,8 +4057,9 @@ extern class DecalSet extends Drawable {
 extern class Model extends Resource {
 
     var boundingBox: BoundingBox;
-    var numGeometries: Int;
-    var numMorphs: Int;
+    var numGeometries: UInt;
+    var numMorphs: UInt;
+    var animationCount: UInt;
 
       // Construct.
     function new();
@@ -3996,27 +4070,31 @@ extern class Model extends Resource {
       // Set local-space bounding box.
     function setBoundingBox(box: BoundingBox): Void;
       // Set number of geometries.
-    function setNumGeometries(num: Int): Void;
+    function setNumGeometries(num: UInt): Void;
       // Set number of LOD levels in a geometry.
-    function setNumGeometryLodLevels(index: Int, num: Int): Bool;
+    function setNumGeometryLodLevels(index: UInt, num: UInt): Bool;
       // Set geometry center.
-    function setGeometryCenter(index: Int, center: Vector3): Bool;
+    function setGeometryCenter(index: UInt, center: Vector3): Bool;
       // Clone the model. The geometry data is deep-copied and can be modified in the clone without affecting the original.
     function clone(?cloneName: String): Model;
       // Return bounding box.
     function getBoundingBox(): BoundingBox;
       // Return number of geometries.
-    function getNumGeometries(): Int;
+    function getNumGeometries(): UInt;
       // Return number of LOD levels in geometry.
-    function getNumGeometryLodLevels(index: Int): Int;
+    function getNumGeometryLodLevels(index: UInt): UInt;
       // Return geometry center by index.
-    function getGeometryCenter(index: Int): Vector3;
+    function getGeometryCenter(index: UInt): Vector3;
       // Return number of vertex morphs.
-    function getNumMorphs(): Int;
+    function getNumMorphs(): UInt;
       // Return vertex buffer morph range start.
-    function getMorphRangeStart(bufferIndex: Int): Int;
+    function getMorphRangeStart(bufferIndex: UInt): UInt;
       // Return vertex buffer morph range vertex count.
-    function getMorphRangeCount(bufferIndex: Int): Int;
+    function getMorphRangeCount(bufferIndex: UInt): UInt;
+    function addAnimationResource(animation: Animation): Void;
+    function removeAnimationResource(animation: Animation): Void;
+    function clearAnimationResources(): Void;
+    function getAnimationCount(): UInt;
 
 }
 
@@ -4024,7 +4102,7 @@ extern class Model extends Resource {
 extern class ParticleEffect extends Resource {
 
     var material: Material;
-    var numParticles: Int;
+    var numParticles: UInt;
     var updateInvisible: Bool;
     var relative: Bool;
     var scaled: Bool;
@@ -4052,8 +4130,8 @@ extern class ParticleEffect extends Resource {
     var maxRotationSpeed: Float;
     var sizeAdd: Float;
     var sizeMul: Float;
-    var numColorFrames: Int;
-    var numTextureFrames: Int;
+    var numColorFrames: UInt;
+    var numTextureFrames: UInt;
     var randomDirection: Vector3;
     var randomSize: Vector2;
     var randomVelocity: Float;
@@ -4070,7 +4148,7 @@ extern class ParticleEffect extends Resource {
       // Set material.
     function setMaterial(material: Material): Void;
       // Set maximum number of particles.
-    function setNumParticles(num: Int): Void;
+    function setNumParticles(num: UInt): Void;
       // Set whether to update when particles are not visible.
     function setUpdateInvisible(enable: Bool): Void;
       // Set whether billboards are relative to the scene node. Default true.
@@ -4128,23 +4206,23 @@ extern class ParticleEffect extends Resource {
       // Add a color frame sorted in the correct position based on time.
     function addColorTime(color: Color, time: Float): Void;
       // Remove color frame at index
-    function removeColorFrame(index: Int): Void;
+    function removeColorFrame(index: UInt): Void;
       // Set number of color frames.
-    function setNumColorFrames(number: Int): Void;
+    function setNumColorFrames(number: UInt): Void;
       // Sort the list of color frames based on time.
     function sortColorFrames(): Void;
       // Add a texture frame sorted in the correct position based on time.
     function addTextureTime(uv: Rect, time: Float): Void;
       // Remove texture frame at index
-    function removeTextureFrame(index: Int): Void;
+    function removeTextureFrame(index: UInt): Void;
       // Set number of texture frames.
-    function setNumTextureFrames(number: Int): Void;
+    function setNumTextureFrames(number: UInt): Void;
       // Sort the list of texture frames based on time.
     function sortTextureFrames(): Void;
       // Return material.
     function getMaterial(): Material;
       // Return maximum number of particles.
-    function getNumParticles(): Int;
+    function getNumParticles(): UInt;
       // Return whether to update when particles are not visible.
     function getUpdateInvisible(): Bool;
       // Return whether billboards are relative to the scene node.
@@ -4200,9 +4278,9 @@ extern class ParticleEffect extends Resource {
       // Return particle size multiplicative modifier.
     function getSizeMul(): Float;
       // Return number of color animation frames.
-    function getNumColorFrames(): Int;
+    function getNumColorFrames(): UInt;
       // Return number of texture animation frames.
-    function getNumTextureFrames(): Int;
+    function getNumTextureFrames(): UInt;
       // Return random direction.
     function getRandomDirection(): Vector3;
       // Return random size.
@@ -4222,7 +4300,7 @@ extern class ParticleEffect extends Resource {
 extern class ParticleEmitter extends BillboardSet {
 
     var effect: ParticleEffect;
-    var numParticles: Int;
+    var numParticles: UInt;
     var emitting: Bool;
     var serializeParticles: Bool;
 
@@ -4235,7 +4313,7 @@ extern class ParticleEmitter extends BillboardSet {
       // Set particle effect.
     function setEffect(effect: ParticleEffect): Void;
       // Set maximum number of particles.
-    function setNumParticles(num: Int): Void;
+    function setNumParticles(num: UInt): Void;
       // Set whether should be emitting. If the state was changed, also resets the emission period timer.
     function setEmitting(enable: Bool): Void;
       // Set whether particles should be serialized. Default true, set false to reduce scene file size.
@@ -4251,7 +4329,7 @@ extern class ParticleEmitter extends BillboardSet {
       // Return particle effect.
     function getEffect(): ParticleEffect;
       // Return maximum number of particles.
-    function getNumParticles(): Int;
+    function getNumParticles(): UInt;
       // Return whether is currently emitting.
     function isEmitting(): Bool;
       // Return whether particles are to be serialized.
@@ -4273,31 +4351,31 @@ extern class StaticModel extends Drawable {
 
     var model: Model;
     var material: Material;
-    var occlusionLodLevel: Int;
-    var numGeometries: Int;
+    var occlusionLodLevel: UInt;
+    var numGeometries: UInt;
 
       // Construct.
     function new();
 
       // Return number of occlusion geometry triangles.
-    @:overload(function(): Int{})
-    override function getNumOccluderTriangles(): Int;
+    @:overload(function(): UInt{})
+    override function getNumOccluderTriangles(): UInt;
       // Set model.
     function setModel(model: Model): Void;
       // Set material on all geometries.
     function setMaterial(material: Material): Void;
       // Set occlusion LOD level. By default (M_MAX_UNSIGNED) same as visible.
-    function setOcclusionLodLevel(level: Int): Void;
+    function setOcclusionLodLevel(level: UInt): Void;
       // Apply default materials from a material list file. If filename is empty (default), the model's resource name with extension .txt will be used.
     function applyMaterialList(?fileName: String): Void;
       // Return model.
     function getModel(): Model;
       // Return number of geometries.
-    function getNumGeometries(): Int;
+    function getNumGeometries(): UInt;
       // Return material by geometry index.
-    function getMaterial(?index: Int): Material;
+    function getMaterial(?index: UInt): Material;
       // Return occlusion LOD level.
-    function getOcclusionLodLevel(): Int;
+    function getOcclusionLodLevel(): UInt;
       // Determines if the given world space point is within the model geometry.
     function isInside(point: Vector3): Bool;
       // Determines if the given local space point is within the model geometry.
@@ -4309,7 +4387,7 @@ extern class StaticModel extends Drawable {
 @:native("Atomic.StaticModelGroup")
 extern class StaticModelGroup extends StaticModel {
 
-    var numInstanceNodes: Int;
+    var numInstanceNodes: UInt;
 
       // Construct.
     function new();
@@ -4318,8 +4396,8 @@ extern class StaticModelGroup extends StaticModel {
     @:overload(function(): Void{})
     override function applyAttributes(): Void;
       // Return number of occlusion geometry triangles.
-    @:overload(function(): Int{})
-    override function getNumOccluderTriangles(): Int;
+    @:overload(function(): UInt{})
+    override function getNumOccluderTriangles(): UInt;
       // Add an instance scene node. It does not need any drawable components of its own.
     function addInstanceNode(node: Node): Void;
       // Remove an instance scene node.
@@ -4327,9 +4405,9 @@ extern class StaticModelGroup extends StaticModel {
       // Remove all instance scene nodes.
     function removeAllInstanceNodes(): Void;
       // Return number of instance nodes.
-    function getNumInstanceNodes(): Int;
+    function getNumInstanceNodes(): UInt;
       // Return instance node by index.
-    function getInstanceNode(index: Int): Node;
+    function getInstanceNode(index: UInt): Node;
 
 }
 
@@ -4343,11 +4421,11 @@ extern class Terrain extends Component {
     var drawDistance: Float;
     var shadowDistance: Float;
     var lodBias: Float;
-    var viewMask: Int;
-    var lightMask: Int;
-    var shadowMask: Int;
-    var zoneMask: Int;
-    var maxLights: Int;
+    var viewMask: UInt;
+    var lightMask: UInt;
+    var shadowMask: UInt;
+    var zoneMask: UInt;
+    var maxLights: UInt;
     var castShadows: Bool;
     var occluder: Bool;
     var occludee: Bool;
@@ -4382,15 +4460,15 @@ extern class Terrain extends Component {
       // Set LOD bias for patches. Affects which terrain LOD to display.
     function setLodBias(bias: Float): Void;
       // Set view mask for patches. Is and'ed with camera's view mask to see if the object should be rendered.
-    function setViewMask(mask: Int): Void;
+    function setViewMask(mask: UInt): Void;
       // Set light mask for patches. Is and'ed with light's and zone's light mask to see if the object should be lit.
-    function setLightMask(mask: Int): Void;
+    function setLightMask(mask: UInt): Void;
       // Set shadow mask for patches. Is and'ed with light's light mask and zone's shadow mask to see if the object should be rendered to a shadow map.
-    function setShadowMask(mask: Int): Void;
+    function setShadowMask(mask: UInt): Void;
       // Set zone mask for patches. Is and'ed with zone's zone mask to see if the object should belong to the zone.
-    function setZoneMask(mask: Int): Void;
+    function setZoneMask(mask: UInt): Void;
       // Set maximum number of per-pixel lights for patches. Default 0 is unlimited.
-    function setMaxLights(num: Int): Void;
+    function setMaxLights(num: UInt): Void;
       // Set shadowcaster flag for patches.
     function setCastShadows(enable: Bool): Void;
       // Set occlusion flag for patches. Occlusion uses the coarsest LOD and may potentially be too aggressive, so use with caution.
@@ -4426,15 +4504,15 @@ extern class Terrain extends Component {
       // Return LOD bias.
     function getLodBias(): Float;
       // Return view mask.
-    function getViewMask(): Int;
+    function getViewMask(): UInt;
       // Return light mask.
-    function getLightMask(): Int;
+    function getLightMask(): UInt;
       // Return shadow mask.
-    function getShadowMask(): Int;
+    function getShadowMask(): UInt;
       // Return zone mask.
-    function getZoneMask(): Int;
+    function getZoneMask(): UInt;
       // Return maximum number of per-pixel lights.
-    function getMaxLights(): Int;
+    function getMaxLights(): UInt;
       // Return visible flag.
     function isVisible(): Bool;
       // Return shadowcaster flag.
@@ -4463,7 +4541,7 @@ extern class TerrainPatch extends Drawable {
     var southPatch: TerrainPatch;
     var westPatch: TerrainPatch;
     var eastPatch: TerrainPatch;
-    var lodLevel: Int;
+    var lodLevel: UInt;
 
       // Construct.
     function new();
@@ -4472,8 +4550,8 @@ extern class TerrainPatch extends Drawable {
     @:overload(function(): UpdateGeometryType{})
     override function getUpdateGeometryType(): UpdateGeometryType;
       // Return number of occlusion geometry triangles.
-    @:overload(function(): Int{})
-    override function getNumOccluderTriangles(): Int;
+    @:overload(function(): UInt{})
+    override function getNumOccluderTriangles(): UInt;
       // Visualize the component as debug geometry.
     @:overload(function(debug: DebugRenderer, depthTest: Bool): Void{})
     override function drawDebugGeometry(debug: DebugRenderer, depthTest: Bool): Void;
@@ -4504,7 +4582,7 @@ extern class TerrainPatch extends Drawable {
       // Return patch coordinates.
     function getCoordinates(): IntVector2;
       // Return current LOD level.
-    function getLodLevel(): Int;
+    function getLodLevel(): UInt;
       // Return vertical offset for occlusion geometry..
     function getOcclusionOffset(): Float;
 
@@ -4563,7 +4641,7 @@ extern class Animation2D extends RefCounted {
     var length: Float;
     var looped: Bool;
     var animationSet: AnimationSet2D;
-    var numTracks: Int;
+    var numTracks: UInt;
 
       // Construct.
     function new(animationSet: AnimationSet2D);
@@ -4583,14 +4661,14 @@ extern class Animation2D extends RefCounted {
       // Return looped.
     function isLooped(): Bool;
       // Return number of animation tracks.
-    function getNumTracks(): Int;
+    function getNumTracks(): UInt;
 
 }
 
 @:native("Atomic.AnimationSet2D")
 extern class AnimationSet2D extends Resource {
 
-    var numAnimations: Int;
+    var numAnimations: UInt;
 
       // Construct.
     function new();
@@ -4599,7 +4677,7 @@ extern class AnimationSet2D extends Resource {
     @:overload(function(): Bool{})
     override function endLoad(): Bool;
       // Get number of animations.
-    function getNumAnimations(): Int;
+    function getNumAnimations(): UInt;
 
 }
 
@@ -4630,7 +4708,7 @@ extern class CollisionBox2D extends CollisionShape2D {
 extern class CollisionChain2D extends CollisionShape2D {
 
     var loop: Bool;
-    var vertexCount: Int;
+    var vertexCount: UInt;
 
       // Construct.
     function new();
@@ -4638,15 +4716,15 @@ extern class CollisionChain2D extends CollisionShape2D {
       // Set loop.
     function setLoop(loop: Bool): Void;
       // Set vertex count.
-    function setVertexCount(count: Int): Void;
+    function setVertexCount(count: UInt): Void;
       // Set vertex.
-    function setVertex(index: Int, vertex: Vector2): Void;
+    function setVertex(index: UInt, vertex: Vector2): Void;
       // Return loop.
     function getLoop(): Bool;
       // Return vertex count.
-    function getVertexCount(): Int;
+    function getVertexCount(): UInt;
       // Return vertex.
-    function getVertex(index: Int): Vector2;
+    function getVertex(index: UInt): Vector2;
 
 }
 
@@ -4693,19 +4771,19 @@ extern class CollisionEdge2D extends CollisionShape2D {
 @:native("Atomic.CollisionPolygon2D")
 extern class CollisionPolygon2D extends CollisionShape2D {
 
-    var vertexCount: Int;
+    var vertexCount: UInt;
 
       // Construct.
     function new();
 
       // Set vertex count.
-    function setVertexCount(count: Int): Void;
+    function setVertexCount(count: UInt): Void;
       // Set vertex.
-    function setVertex(index: Int, vertex: Vector2): Void;
+    function setVertex(index: UInt, vertex: Vector2): Void;
       // Return vertex count.
-    function getVertexCount(): Int;
+    function getVertexCount(): UInt;
       // Return vertex.
-    function getVertex(index: Int): Vector2;
+    function getVertex(index: UInt): Vector2;
 
 }
 
@@ -5492,7 +5570,7 @@ extern class ParticleEmitter2D extends Drawable2D {
     var effect: ParticleEffect2D;
     var sprite: Sprite2D;
     var blendMode: BlendMode;
-    var maxParticles: Int;
+    var maxParticles: UInt;
 
       // Construct.
     function new();
@@ -5507,7 +5585,7 @@ extern class ParticleEmitter2D extends Drawable2D {
       // Set blend mode.
     function setBlendMode(blendMode: BlendMode): Void;
       // Set max particles.
-    function setMaxParticles(maxParticles: Int): Void;
+    function setMaxParticles(maxParticles: UInt): Void;
       // Return particle effect.
     function getEffect(): ParticleEffect2D;
       // Return sprite.
@@ -5515,7 +5593,7 @@ extern class ParticleEmitter2D extends Drawable2D {
       // Return blend mode.
     function getBlendMode(): BlendMode;
       // Return max particles.
-    function getMaxParticles(): Int;
+    function getMaxParticles(): UInt;
 
 }
 
@@ -5839,7 +5917,7 @@ extern class StaticSprite2D extends Drawable2D {
 extern class TileMap2D extends Component {
 
     var tmxFile: TmxFile2D;
-    var numLayers: Int;
+    var numLayers: UInt;
 
       // Construct.
     function new();
@@ -5849,9 +5927,9 @@ extern class TileMap2D extends Component {
       // Return tmx file.
     function getTmxFile(): TmxFile2D;
       // Return number of layers.
-    function getNumLayers(): Int;
+    function getNumLayers(): UInt;
       // Return tile map layer at index.
-    function getLayer(index: Int): TileMapLayer2D;
+    function getLayer(index: UInt): TileMapLayer2D;
     function getLayerByName(name: String): TileMapLayer2D;
       // Convert tile index to position.
     function tileIndexToPosition(x: Int, y: Int): Vector2;
@@ -5901,7 +5979,7 @@ extern class TileMapObject2D extends RefCounted {
     var type: String;
     var position: Vector2;
     var size: Vector2;
-    var numPoints: Int;
+    var numPoints: UInt;
     var tileGid: Int;
     var tileSprite: Sprite2D;
 
@@ -5918,9 +5996,9 @@ extern class TileMapObject2D extends RefCounted {
       // Return size (for rectangle and ellipse).
     function getSize(): Vector2;
       // Return number of points (use for script).
-    function getNumPoints(): Int;
+    function getNumPoints(): UInt;
       // Return point at index (use for script).
-    function getPoint(index: Int): Vector2;
+    function getPoint(index: UInt): Vector2;
       // Return tile Gid.
     function getTileGid(): Int;
       // Return tile sprite.
@@ -5944,7 +6022,7 @@ extern class TileMapLayer2D extends Component {
     var layerType: TileMapLayerType2D;
     var width: Int;
     var height: Int;
-    var numObjects: Int;
+    var numObjects: UInt;
     var imageNode: Node;
     var name: String;
 
@@ -5983,11 +6061,11 @@ extern class TileMapLayer2D extends Component {
       // Return tile (for tile layer only).
     function getTile(x: Int, y: Int): Tile2D;
       // Return number of tile map objects (for object group only).
-    function getNumObjects(): Int;
+    function getNumObjects(): UInt;
       // Return tile map object (for object group only).
-    function getObject(index: Int): TileMapObject2D;
+    function getObject(index: UInt): TileMapObject2D;
       // Return object node (for object group only).
-    function getObjectNode(index: Int): Node;
+    function getObjectNode(index: UInt): Node;
       // Return image node (for image layer only).
     function getImageNode(): Node;
     function getName(): String;
@@ -6037,14 +6115,14 @@ extern class TmxTileLayer2D extends TmxLayer2D {
 @:native("Atomic.TmxObjectGroup2D")
 extern class TmxObjectGroup2D extends TmxLayer2D {
 
-    var numObjects: Int;
+    var numObjects: UInt;
 
     function new(tmxFile: TmxFile2D);
 
       // Return number of objects.
-    function getNumObjects(): Int;
+    function getNumObjects(): UInt;
       // Return tile map object at index.
-    function getObject(index: Int): TileMapObject2D;
+    function getObject(index: UInt): TileMapObject2D;
 
 }
 
@@ -6069,7 +6147,7 @@ extern class TmxImageLayer2D extends TmxLayer2D {
 @:native("Atomic.TmxFile2D")
 extern class TmxFile2D extends Resource {
 
-    var numLayers: Int;
+    var numLayers: UInt;
 
       // Construct.
     function new();
@@ -6084,9 +6162,9 @@ extern class TmxFile2D extends Resource {
       // Return tile object group by gid, if not exist return 0.
     function getTileObjectGroup(gid: Int): TmxObjectGroup2D;
       // Return number of layers.
-    function getNumLayers(): Int;
+    function getNumLayers(): UInt;
       // Return layer at index.
-    function getLayer(index: Int): TmxLayer2D;
+    function getLayer(index: UInt): TmxLayer2D;
 
 }
 
@@ -6100,35 +6178,35 @@ extern class TmxFile2D extends Resource {
 @:native("Atomic.Sound")
 extern class Sound extends Resource {
 
-    var size: Int;
+    var size: UInt;
     var looped: Bool;
     var length: Float;
-    var dataSize: Int;
-    var sampleSize: Int;
+    var dataSize: UInt;
+    var sampleSize: UInt;
     var frequency: Float;
-    var intFrequency: Int;
+    var intFrequency: UInt;
 
       // Construct.
     function new();
 
       // Set sound size in bytes. Also resets the sound to be uncompressed and one-shot.
-    function setSize(dataSize: Int): Void;
+    function setSize(dataSize: UInt): Void;
       // Set uncompressed sound data format.
-    function setFormat(frequency: Int, sixteenBit: Bool, stereo: Bool): Void;
+    function setFormat(frequency: UInt, sixteenBit: Bool, stereo: Bool): Void;
       // Set loop on/off. If loop is enabled, sets the full sound as loop range.
     function setLooped(enable: Bool): Void;
       // Define loop.
-    function setLoop(repeatOffset: Int, endOffset: Int): Void;
+    function setLoop(repeatOffset: UInt, endOffset: UInt): Void;
       // Return length in seconds.
     function getLength(): Float;
       // Return total sound data size.
-    function getDataSize(): Int;
+    function getDataSize(): UInt;
       // Return sample size.
-    function getSampleSize(): Int;
+    function getSampleSize(): UInt;
       // Return default frequency as a float.
     function getFrequency(): Float;
       // Return default frequency as an integer.
-    function getIntFrequency(): Int;
+    function getIntFrequency(): UInt;
       // Return whether is looped.
     function isLooped(): Bool;
       // Return whether data is sixteen bit.
@@ -6139,6 +6217,15 @@ extern class Sound extends Resource {
     function isCompressed(): Bool;
       // Fix interpolation by copying data from loop start to loop end (looped), or adding silence (oneshot.) Called internally, does not normally need to be called, unless the sound data is modified manually on the fly.
     function fixInterpolation(): Void;
+
+}
+
+@:native("Atomic.SoundListener")
+extern class SoundListener extends Component {
+
+      // Construct.
+    function new();
+
 
 }
 
@@ -6208,6 +6295,53 @@ extern class SoundSource extends Component {
 
 }
 
+@:native("Atomic.SoundSource3D")
+extern class SoundSource3D extends SoundSource {
+
+    var nearDistance: Float;
+    var farDistance: Float;
+    var innerAngle: Float;
+    var outerAngle: Float;
+    var rolloffFactor: Float;
+
+      // Construct.
+    function new();
+
+      // Visualize the component as debug geometry.
+    @:overload(function(debug: DebugRenderer, depthTest: Bool): Void{})
+    override function drawDebugGeometry(debug: DebugRenderer, depthTest: Bool): Void;
+      // Update sound source.
+    @:overload(function(timeStep: Float): Void{})
+    override function update(timeStep: Float): Void;
+      // Set attenuation parameters.
+    function setDistanceAttenuation(nearDistance: Float, farDistance: Float, rolloffFactor: Float): Void;
+      // Set angle attenuation parameters.
+    function setAngleAttenuation(innerAngle: Float, outerAngle: Float): Void;
+      // Set near distance. Inside this range sound will not be attenuated.
+    function setNearDistance(distance: Float): Void;
+      // Set far distance. Outside this range sound will be completely attenuated.
+    function setFarDistance(distance: Float): Void;
+      // Set inner angle in degrees. Inside this angle sound will not be attenuated.By default 360, meaning direction never has an effect.
+    function setInnerAngle(angle: Float): Void;
+      // Set outer angle in degrees. Outside this angle sound will be completely attenuated. By default 360, meaning direction never has an effect.
+    function setOuterAngle(angle: Float): Void;
+      // Set rolloff power factor, defines attenuation function shape.
+    function setRolloffFactor(factor: Float): Void;
+      // Calculate attenuation and panning based on current position and listener position.
+    function calculateAttenuation(): Void;
+      // Return near distance.
+    function getNearDistance(): Float;
+      // Return far distance.
+    function getFarDistance(): Float;
+      // Return inner angle in degrees.
+    function getInnerAngle(): Float;
+      // Return outer angle in degrees.
+    function getOuterAngle(): Float;
+      // Return rolloff power factor.
+    function rollAngleoffFactor(): Float;
+
+}
+
 
 
 //----------------------------------------------------
@@ -6218,14 +6352,14 @@ extern class SoundSource extends Component {
 @:native("Atomic.CollisionShape")
 extern class CollisionShape extends Component {
 
-    var terrain: Int;
+    var terrain: UInt;
     var shapeType: ShapeType;
     var size: Vector3;
     var position: Vector3;
     var rotation: Quaternion;
     var margin: Float;
     var model: Model;
-    var lodLevel: Int;
+    var lodLevel: UInt;
     var physicsWorld: PhysicsWorld;
     var worldBoundingBox: BoundingBox;
 
@@ -6254,15 +6388,15 @@ extern class CollisionShape extends Component {
       // Set as a cone.
     function setCone(diameter: Float, height: Float, ?position: Vector3, ?rotation: Quaternion): Void;
       // Set as a triangle mesh from Model. If you update a model's geometry and want to reapply the shape, call physicsWorld->RemoveCachedGeometry(model) first.
-    function setTriangleMesh(model: Model, ?lodLevel: Int, ?scale: Vector3, ?position: Vector3, ?rotation: Quaternion): Void;
+    function setTriangleMesh(model: Model, ?lodLevel: UInt, ?scale: Vector3, ?position: Vector3, ?rotation: Quaternion): Void;
       // Set as a triangle mesh from CustomGeometry.
     function setCustomTriangleMesh(custom: CustomGeometry, ?scale: Vector3, ?position: Vector3, ?rotation: Quaternion): Void;
       // Set as a convex hull from Model.
-    function setConvexHull(model: Model, ?lodLevel: Int, ?scale: Vector3, ?position: Vector3, ?rotation: Quaternion): Void;
+    function setConvexHull(model: Model, ?lodLevel: UInt, ?scale: Vector3, ?position: Vector3, ?rotation: Quaternion): Void;
       // Set as a convex hull from CustomGeometry.
     function setCustomConvexHull(custom: CustomGeometry, ?scale: Vector3, ?position: Vector3, ?rotation: Quaternion): Void;
       // Set as a terrain. Only works if the same scene node contains a Terrain component.
-    function setTerrain(?lodLevel: Int): Void;
+    function setTerrain(?lodLevel: UInt): Void;
       // Set shape type.
     function setShapeType(type: ShapeType): Void;
       // Set shape size.
@@ -6278,7 +6412,7 @@ extern class CollisionShape extends Component {
       // Set triangle mesh / convex hull model.
     function setModel(model: Model): Void;
       // Set model LOD level.
-    function setLodLevel(lodLevel: Int): Void;
+    function setLodLevel(lodLevel: UInt): Void;
       // Return physics world.
     function getPhysicsWorld(): PhysicsWorld;
       // Return shape type.
@@ -6294,7 +6428,7 @@ extern class CollisionShape extends Component {
       // Return triangle mesh / convex hull model.
     function getModel(): Model;
       // Return model LOD level.
-    function getLodLevel(): Int;
+    function getLodLevel(): UInt;
       // Return world-space bounding box.
     function getWorldBoundingBox(): BoundingBox;
       // Update the new collision shape to the RigidBody.
@@ -6509,8 +6643,8 @@ extern class RigidBody extends Component {
     var gravityOverride: Vector3;
     var kinematic: Bool;
     var trigger: Bool;
-    var collisionLayer: Int;
-    var collisionMask: Int;
+    var collisionLayer: UInt;
+    var collisionMask: UInt;
     var collisionEventMode: CollisionEventMode;
     var physicsWorld: PhysicsWorld;
     var centerOfMass: Vector3;
@@ -6574,11 +6708,11 @@ extern class RigidBody extends Component {
       // Set rigid body trigger mode. In trigger mode collisions are reported but do not apply forces.
     function setTrigger(enable: Bool): Void;
       // Set collision layer.
-    function setCollisionLayer(layer: Int): Void;
+    function setCollisionLayer(layer: UInt): Void;
       // Set collision mask.
-    function setCollisionMask(mask: Int): Void;
+    function setCollisionMask(mask: UInt): Void;
       // Set collision group and mask.
-    function setCollisionLayerAndMask(layer: Int, mask: Int): Void;
+    function setCollisionLayerAndMask(layer: UInt, mask: UInt): Void;
       // Set collision event signaling mode. Default is to signal when rigid bodies are active.
     function setCollisionEventMode(mode: CollisionEventMode): Void;
       // Apply torque.
@@ -6650,9 +6784,9 @@ extern class RigidBody extends Component {
       // Return whether rigid body is active (not sleeping.)
     function isActive(): Bool;
       // Return collision layer.
-    function getCollisionLayer(): Int;
+    function getCollisionLayer(): UInt;
       // Return collision mask.
-    function getCollisionMask(): Int;
+    function getCollisionMask(): UInt;
       // Return collision event signaling mode.
     function getCollisionEventMode(): CollisionEventMode;
       // Apply new world transform after a simulation step. Called internally.
@@ -6750,7 +6884,7 @@ extern class NavigationMesh extends Component {
       // Set padding of the navigation mesh bounding box. Having enough padding allows to add geometry on the extremities of the navigation mesh when doing partial rebuilds.
     function setPadding(padding: Vector3): Void;
       // Set the cost of an area.
-    function setAreaCost(areaID: Int, cost: Float): Void;
+    function setAreaCost(areaID: UInt, cost: Float): Void;
       // Find the nearest point on the navigation mesh to a given point. Extens specifies how far out from the specified point to check along each axis.
     function findNearestPoint(point: Vector3, ?extents: Vector3): Vector3;
       // Try to move along the surface from one point to another.
@@ -6796,7 +6930,7 @@ extern class NavigationMesh extends Component {
       // Return navigation mesh bounding box padding.
     function getPadding(): Vector3;
       // Get the current cost of an area
-    function getAreaCost(areaID: Int): Float;
+    function getAreaCost(areaID: UInt): Float;
       // Return whether has been initialized with valid navigation data.
     function isInitialized(): Bool;
       // Return local space bounding box of the navigation mesh.
@@ -6826,8 +6960,8 @@ extern class OffMeshConnection extends Component {
     var endPoint: Node;
     var radius: Float;
     var bidirectional: Bool;
-    var mask: Int;
-    var areaID: Int;
+    var mask: UInt;
+    var areaID: UInt;
 
       // Construct.
     function new();
@@ -6845,9 +6979,9 @@ extern class OffMeshConnection extends Component {
       // Set bidirectional flag. Default true.
     function setBidirectional(enabled: Bool): Void;
       // Set a user assigned mask
-    function setMask(newMask: Int): Void;
+    function setMask(newMask: UInt): Void;
       // Sets the assigned area Id for the connection
-    function setAreaID(newAreaID: Int): Void;
+    function setAreaID(newAreaID: UInt): Void;
       // Return endpoint node.
     function getEndPoint(): Node;
       // Return radius.
@@ -6855,9 +6989,9 @@ extern class OffMeshConnection extends Component {
       // Return whether is bidirectional.
     function isBidirectional(): Bool;
       // Return the user assigned mask
-    function getMask(): Int;
+    function getMask(): UInt;
       // Return the user assigned area ID
-    function getAreaID(): Int;
+    function getAreaID(): UInt;
 
 }
 
@@ -6882,8 +7016,8 @@ extern class Input extends AObject {
     var mouseMoveX: Int;
     var mouseMoveY: Int;
     var mouseMoveWheel: Int;
-    var numTouches: Int;
-    var numJoysticks: Int;
+    var numTouches: UInt;
+    var numJoysticks: UInt;
     var screenKeyboardSupport: Bool;
 
       // Construct.
@@ -6907,7 +7041,7 @@ extern class Input extends AObject {
       // Begin recording a touch gesture. Return true if successful. The E_GESTURERECORDED event (which contains the ID for the new gesture) will be sent when recording finishes.
     function recordGesture(): Bool;
       // Remove an in-memory gesture by ID. Return true if was found.
-    function removeGesture(gestureID: Int): Bool;
+    function removeGesture(gestureID: UInt): Bool;
       // Remove all in-memory gestures.
     function removeAllGestures(): Void;
       // Return keycode from key name.
@@ -6951,9 +7085,9 @@ extern class Input extends AObject {
       // Return mouse wheel movement since last frame.
     function getMouseMoveWheel(): Int;
       // Return number of active finger touches.
-    function getNumTouches(): Int;
+    function getNumTouches(): UInt;
       // Return number of connected joysticks.
-    function getNumJoysticks(): Int;
+    function getNumJoysticks(): UInt;
       // Return whether fullscreen toggle is enabled.
     function getToggleFullscreen(): Bool;
       // Return whether on-screen keyboard is supported.
@@ -6981,6 +7115,35 @@ extern class Input extends AObject {
 // MODULE: UI
 //----------------------------------------------------
 
+
+@:native("Atomic.UI")
+extern class UI extends AObject {
+
+    var keyboardDisabled: Bool;
+    var inputDisabled: Bool;
+    var skinLoaded: Bool;
+
+      // Construct.
+    function new();
+
+    function setKeyboardDisabled(disabled: Bool): Void;
+    function setInputDisabled(disabled: Bool): Void;
+    function render(?resetRenderTargets: Bool): Void;
+    function initialize(languageFile: String): Void;
+    function shutdown(): Void;
+    function loadSkin(skin: String, ?overrideSkin: String): Void;
+    function getSkinLoaded(): Bool;
+    function loadDefaultPlayerSkin(): Void;
+    function addFont(fontFile: String, name: String): Void;
+    function setDefaultFont(name: String, size: Int): Void;
+    function debugGetWrappedWidgetCount(): UInt;
+    function pruneUnreachableWidgets(): Void;
+    function showDebugHud(value: Bool): Void;
+    function toggleDebugHud(): Void;
+    function showConsole(value: Bool): Void;
+    function toggleConsole(): Void;
+
+}
 
 @:native("Atomic.UIButton")
 extern class UIButton extends UIWidget {
@@ -7050,17 +7213,22 @@ extern class UIDragObject extends AObject {
 @:native("Atomic.UIEditField")
 extern class UIEditField extends UIWidget {
 
-    var textAlign: TEXT_ALIGN;
+    var textAlign: UI_TEXT_ALIGN;
+    var adaptToContentSize: Bool;
     var editType: UI_EDIT_TYPE;
     var readOnly: Bool;
+    var multiline: Bool;
     var wrapping: Bool;
 
     function new(?createWidget: Bool);
 
     function appendText(text: String): Void;
-    function setTextAlign(align: TEXT_ALIGN): Void;
+    function setTextAlign(align: UI_TEXT_ALIGN): Void;
+    function setAdaptToContentSize(adapt: Bool): Void;
+    function getAdaptToContentSize(): Bool;
     function setEditType(type: UI_EDIT_TYPE): Void;
     function setReadOnly(readonly: Bool): Void;
+    function setMultiline(multiline: Bool): Void;
     function scrollTo(x: Int, y: Int): Void;
     function setWrapping(wrap: Bool): Void;
     function getWrapping(): Bool;
@@ -7155,13 +7323,13 @@ extern class UIListView extends UIWidget {
       // Construct.
     function new(?createWidget: Bool);
 
-    function addRootItem(text: String, icon: String, id: String): Int;
-    function addChildItem(parentItemID: Int, text: String, icon: String, id: String): Int;
+    function addRootItem(text: String, icon: String, id: String): UInt;
+    function addChildItem(parentItemID: UInt, text: String, icon: String, id: String): UInt;
     function setItemText(id: String, text: String): Void;
     function setItemTextSkin(id: String, skin: String): Void;
     function setItemIcon(id: String, icon: String): Void;
     function deleteItemByID(id: String): Void;
-    function setExpanded(itemID: Int, value: Bool): Void;
+    function setExpanded(itemID: UInt, value: Bool): Void;
     function deleteAllItems(): Void;
     function selectItemByID(id: String): Void;
     function getHoverItemID(): String;
@@ -7238,7 +7406,7 @@ extern class UIPreferredSize extends RefCounted {
 @:native("Atomic.UISceneView")
 extern class UISceneView extends UIWidget {
 
-    var format: Int;
+    var format: UInt;
     var autoUpdate: Bool;
     var scene: Scene;
     var cameraNode: Node;
@@ -7254,13 +7422,13 @@ extern class UISceneView extends UIWidget {
       // Define the scene and camera to use in rendering. When ownScene is true the View3D will take ownership of them with shared pointers.
     function setView(scene: Scene, camera: Camera): Void;
       // Set render texture pixel format. Default is RGB.
-    function setFormat(format: Int): Void;
+    function setFormat(format: UInt): Void;
       // Set render target auto update mode. Default is true.
     function setAutoUpdate(enable: Bool): Void;
       // Queue manual update on the render texture.
     function queueUpdate(): Void;
       // Return render texture pixel format.
-    function getFormat(): Int;
+    function getFormat(): UInt;
       // Return whether render target updates automatically.
     function getAutoUpdate(): Bool;
       // Return scene.
@@ -7292,7 +7460,7 @@ extern class UIScrollContainer extends UIWidget {
       // Set to true if the preferred size of this container should adapt to the preferred size of the content. This is disabled by default.
     function setAdaptToContentSize(adapt: Bool): Void;
     function getAdaptToContentSize(): Bool;
-      // Set to true if the content should adapt to the available size of this container when it's larger than the preferred size. */
+      // Set to true if the content should adapt to the available size of this container when it's larger than the preferred size.
     function setAdaptContentSize(adapt: Bool): Void;
     function getAdaptContentSize(): Bool;
 
@@ -7433,7 +7601,7 @@ extern class UIWidget extends AObject {
     var value: Float;
     var focus: Bool;
     var visibility: UI_WIDGET_VISIBILITY;
-    var stateRaw: Int;
+    var stateRaw: UInt;
     var dragObject: UIDragObject;
     var firstChild: UIWidget;
     var next: UIWidget;
@@ -7468,12 +7636,12 @@ extern class UIWidget extends AObject {
       // Set focus to first widget which accepts it
     function setFocusRecursive(): Void;
     function onFocusChanged(focused: Bool): Void;
-    function setState(state: Int, on: Bool): Void;
-    function getState(state: Int): Bool;
+    function setState(state: UInt, on: Bool): Void;
+    function getState(state: UInt): Bool;
     function setVisibility(visibility: UI_WIDGET_VISIBILITY): Void;
     function getVisibility(): UI_WIDGET_VISIBILITY;
-    function setStateRaw(state: Int): Void;
-    function getStateRaw(): Int;
+    function setStateRaw(state: UInt): Void;
+    function getStateRaw(): UInt;
     function invalidate(): Void;
     function die(): Void;
     function setDragObject(object: UIDragObject): Void;
@@ -7485,7 +7653,7 @@ extern class UIWidget extends AObject {
     function getWidget(id: String): UIWidget;
     function getView(): UIView;
     function addChild(child: UIWidget): Void;
-      // This takes a relative Z and insert the child before or after the given reference widget.*/
+      // This takes a relative Z and insert the child before or after the given reference widget.
     function addChildRelative(child: UIWidget, z: UI_WIDGET_Z_REL, reference: UIWidget): Void;
 
 }
@@ -7519,9 +7687,9 @@ extern class Image extends Resource {
     var width: Int;
     var height: Int;
     var depth: Int;
-    var components: Int;
+    var components: UInt;
     var compressedFormat: CompressedFormat;
-    var numCompressedLevels: Int;
+    var numCompressedLevels: UInt;
     var nextLevel: Image;
 
       // Construct empty.
@@ -7536,7 +7704,7 @@ extern class Image extends Resource {
       // Clear the image with a color.
     function clear(color: Color): Void;
       // Clear the image with an integer color. R component is in the 8 lowest bits.
-    function clearInt(uintColor: Int): Void;
+    function clearInt(uintColor: UInt): Void;
       // Save in BMP format. Return true if successful.
     function saveBMP(fileName: String): Bool;
       // Save in PNG format. Return true if successful.
@@ -7556,13 +7724,13 @@ extern class Image extends Resource {
       // Return depth.
     function getDepth(): Int;
       // Return number of color components.
-    function getComponents(): Int;
+    function getComponents(): UInt;
       // Return whether is compressed.
     function isCompressed(): Bool;
       // Return compressed format.
     function getCompressedFormat(): CompressedFormat;
       // Return number of compressed mip levels.
-    function getNumCompressedLevels(): Int;
+    function getNumCompressedLevels(): UInt;
       // Return next mip level by bilinear filtering.
     function getNextLevel(): Image;
       // Return image converted to 4-component (RGBA) to circumvent modern rendering API's not supporting e.g. the luminance-alpha format.
@@ -7596,10 +7764,10 @@ extern class PListFile extends Resource {
 extern class Resource extends AObject {
 
     var name: String;
-    var memoryUse: Int;
+    var memoryUse: UInt;
     var asyncLoadState: AsyncLoadState;
     var nameHash: String;
-    var useTimer: Int;
+    var useTimer: UInt;
 
       // Construct.
     function new();
@@ -7609,7 +7777,7 @@ extern class Resource extends AObject {
       // Set name.
     function setName(name: String): Void;
       // Set memory use in bytes, possibly approximate.
-    function setMemoryUse(size: Int): Void;
+    function setMemoryUse(size: UInt): Void;
       // Reset last used timer.
     function resetUseTimer(): Void;
       // Set the asynchronous loading state. Called by ResourceCache. Resources in the middle of asynchronous loading are not normally returned to user.
@@ -7619,9 +7787,9 @@ extern class Resource extends AObject {
       // Return name hash.
     function getNameHash(): String;
       // Return memory use in bytes, possibly approximate.
-    function getMemoryUse(): Int;
+    function getMemoryUse(): UInt;
       // Return time since last use in milliseconds. If referred to elsewhere than in the resource cache, returns always zero.
-    function getUseTimer(): Int;
+    function getUseTimer(): UInt;
       // Return the asynchronous loading state.
     function getAsyncLoadState(): AsyncLoadState;
 
@@ -7634,17 +7802,17 @@ extern class ResourceCache extends AObject {
     var returnFailedResources: Bool;
     var searchPackagesFirst: Bool;
     var finishBackgroundResourcesMs: Int;
-    var numBackgroundLoadResources: Int;
+    var numBackgroundLoadResources: UInt;
     var resourceDirs: Array<String>;
-    var totalMemoryUse: Int;
+    var totalMemoryUse: UInt;
 
       // Construct.
     function new();
 
       // Add a resource load directory. Optional priority parameter which will control search order.
-    function addResourceDir(pathName: String, ?priority: Int): Bool;
+    function addResourceDir(pathName: String, ?priority: UInt): Bool;
       // Add a package file for loading resources from by name. Optional priority parameter which will control search order.
-    function addPackageFile(fileName: String, ?priority: Int): Bool;
+    function addPackageFile(fileName: String, ?priority: UInt): Bool;
       // Add a manually created resource. Must be uniquely named.
     function addManualResource(resource: Resource): Bool;
       // Remove a resource load directory.
@@ -7660,7 +7828,7 @@ extern class ResourceCache extends AObject {
       // Reload a resource based on filename. Causes also reload of dependent resources if necessary.
     function reloadResourceWithDependencies(fileName: String): Void;
       // Set memory budget for a specific resource type, default 0 is unlimited.
-    function setMemoryBudget(type: String, budget: Int): Void;
+    function setMemoryBudget(type: String, budget: UInt): Void;
       // Enable or disable automatic reloading of resources as files are modified. Default false.
     function setAutoReloadResources(enable: Bool): Void;
       // Enable or disable returning resources that failed to load. Default false. This may be useful in editing to not lose resource ref attributes.
@@ -7678,7 +7846,7 @@ extern class ResourceCache extends AObject {
       // Background load a resource. An event will be sent when complete. Return true if successfully stored to the load queue, false if eg. already exists. Can be called from outside the main thread.
     function backgroundLoadResource(type: String, name: String, ?sendEventOnFailure: Bool, ?caller: Resource): Bool;
       // Return number of pending background-loaded resources.
-    function getNumBackgroundLoadResources(): Int;
+    function getNumBackgroundLoadResources(): UInt;
       // Return an already loaded resource of specific type & name, or null if not found. Will not load if does not exist.
     function getExistingResource(type: String, name: String): Resource;
       // Return added resource load directories.
@@ -7686,11 +7854,11 @@ extern class ResourceCache extends AObject {
       // Return whether a file exists by name.
     function exists(name: String): Bool;
       // Return memory budget for a resource type.
-    function getMemoryBudget(type: String): Int;
+    function getMemoryBudget(type: String): UInt;
       // Return total memory use for a resource type.
-    function getMemoryUse(type: String): Int;
+    function getMemoryUse(type: String): UInt;
       // Return total memory use for all resources.
-    function getTotalMemoryUse(): Int;
+    function getTotalMemoryUse(): UInt;
       // Return full absolute file name of resource if possible.
     function getResourceFileName(name: String): String;
       // Return whether automatic resource reloading is enabled.
@@ -7743,7 +7911,7 @@ extern class HttpRequest extends RefCounted {
     var verb: String;
     var error: String;
     var state: HttpRequestState;
-    var availableSize: Int;
+    var availableSize: UInt;
 
       // Construct with parameters.
     function new(url: String, verb: String, headers: Array<String>, postData: String);
@@ -7751,7 +7919,7 @@ extern class HttpRequest extends RefCounted {
       // Process the connection in the worker thread until closed.
     function threadFunction(): Void;
       // Set position from the beginning of the stream. Not supported.
-    function seek(position: Int): Int;
+    function seek(position: UInt): UInt;
       // Return URL used in the request.
     function getURL(): String;
       // Return verb used in the request. Default GET if empty verb specified on construction.
@@ -7761,7 +7929,7 @@ extern class HttpRequest extends RefCounted {
       // Return connection state.
     function getState(): HttpRequestState;
       // Return amount of bytes in the read buffer.
-    function getAvailableSize(): Int;
+    function getAvailableSize(): UInt;
       // Return whether connection is in the open state.
     function isOpen(): Bool;
 
@@ -7860,7 +8028,7 @@ extern class NetworkPriority extends Component {
 extern class File extends AObject {
 
     var name: String;
-    var checksum: Int;
+    var checksum: UInt;
     var fullPath: String;
     var mode: FileMode;
 
@@ -7868,11 +8036,11 @@ extern class File extends AObject {
     function new(fileName: String, ?mode: FileMode);
 
       // Set position from the beginning of the file.
-    function seek(position: Int): Int;
+    function seek(position: UInt): UInt;
       // Return the file name.
     function getName(): String;
       // Return a checksum of the file contents using the SDBM hash algorithm.
-    function getChecksum(): Int;
+    function getChecksum(): UInt;
       // Open a filesystem file. Return true if successful.
     function open(fileName: String, ?mode: FileMode): Bool;
       // Close the file.
@@ -7921,9 +8089,9 @@ extern class FileSystem extends AObject {
       // Run a specific program, block until it exits and return the exit code. Will fail if any allowed paths are defined.
     function systemRun(fileName: String, arguments: Array<String>): Int;
       // Run a program using the command interpreter asynchronously. Return a request ID or M_MAX_UNSIGNED if failed. The exit code will be posted together with the request ID in an AsyncExecFinished event. Will fail if any allowed paths are defined.
-    function systemCommandAsync(commandLine: String): Int;
+    function systemCommandAsync(commandLine: String): UInt;
       // Run a specific program asynchronously. Return a request ID or M_MAX_UNSIGNED if failed. The exit code will be posted together with the request ID in an AsyncExecFinished event. Will fail if any allowed paths are defined.
-    function systemRunAsync(fileName: String, arguments: Array<String>): Int;
+    function systemRunAsync(fileName: String, arguments: Array<String>): UInt;
       // Open a file in an external program, with mode such as "edit" optionally specified. Will fail if any allowed paths are defined.
     function systemOpen(fileName: String, ?mode: String): Bool;
       // Copy a file. Return true if successful.
@@ -7935,7 +8103,7 @@ extern class FileSystem extends AObject {
       // Register a path as allowed to access. If no paths are registered, all are allowed. Registering allowed paths is considered securing the Atomic execution environment: running programs and opening files externally through the system will fail afterward.
     function registerPath(pathName: String): Void;
       // Set a file's last modified time as seconds since 1.1.1970. Return true on success.
-    function setLastModifiedTime(fileName: String, newTime: Int): Bool;
+    function setLastModifiedTime(fileName: String, newTime: UInt): Bool;
       // Return the absolute current working directory.
     function getCurrentDir(): String;
       // Return whether is executing engine console commands as OS-specific system command.
@@ -7945,7 +8113,7 @@ extern class FileSystem extends AObject {
       // Check if a path is allowed to be accessed. If no paths are registered, all are allowed.
     function checkAccess(pathName: String): Bool;
       // Returns the file's last modified time as seconds since 1.1.1970, or 0 if can not be accessed.
-    function getLastModifiedTime(fileName: String): Int;
+    function getLastModifiedTime(fileName: String): UInt;
       // Check if a file exists.
     function fileExists(fileName: String): Bool;
       // Check if a directory exists.
@@ -8199,5 +8367,3 @@ extern class ProcSky extends Drawable {
     function getTimeOfDay(): Float;
 
 }
-
-
