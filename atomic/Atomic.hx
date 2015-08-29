@@ -695,6 +695,8 @@ extern class Atomic {
     public static var input: Input;
     public static var fileSystem: FileSystem;
     public static var network: Network;
+    public static var ui: UI;
+    public static var audio: Audio;
 
     public static var QUICKSORT_THRESHOLD: Int;
     public static var CONVERSION_BUFFER_LENGTH: Int;
@@ -4001,6 +4003,7 @@ extern class CustomGeometry extends Drawable {
     function isDynamic(): Bool;
       // Return material by geometry index.
     function getMaterial(?index: UInt): Material;
+    function setMaterial(index: UInt, material:Material):Void;
 
 }
 
@@ -6175,6 +6178,58 @@ extern class TmxFile2D extends Resource {
 //----------------------------------------------------
 
 
+@:native("Atomic.Audio")
+extern class Audio extends AObject {
+
+    var listener: SoundListener;
+    var sampleSize: UInt;
+    var mixRate: Int;
+    var interpolation: Bool;
+
+      // Construct.
+    function new();
+
+      // Initialize sound output with specified buffer length and output mode.
+    function setMode(bufferLengthMSec: Int, mixRate: Int, stereo: Bool, ?interpolation: Bool): Bool;
+      // Run update on sound sources. Not required for continued playback, but frees unused sound sources & sounds and updates 3D positions.
+    function update(timeStep: Float): Void;
+      // Restart sound output.
+    function play(): Bool;
+      // Suspend sound output.
+    function stop(): Void;
+      // Set master gain on a specific sound type such as sound effects, music or voice.
+    function setMasterGain(type: String, gain: Float): Void;
+      // Set active sound listener for 3D sounds.
+    function setListener(listener: SoundListener): Void;
+      // Stop any sound source playing a certain sound clip.
+    function stopSound(sound: Sound): Void;
+      // Return byte size of one sample.
+    function getSampleSize(): UInt;
+      // Return mixing rate.
+    function getMixRate(): Int;
+      // Return whether output is interpolated.
+    function getInterpolation(): Bool;
+      // Return whether output is stereo.
+    function isStereo(): Bool;
+      // Return whether audio is being output.
+    function isPlaying(): Bool;
+      // Return whether an audio stream has been reserved.
+    function isInitialized(): Bool;
+      // Return master gain for a specific sound source type. Unknown sound types will return full gain (1).
+    function getMasterGain(type: String): Float;
+      // Return active sound listener.
+    function getListener(): SoundListener;
+      // Return whether the specified master gain has been defined.
+    function hasMasterGain(type: String): Bool;
+      // Add a sound source to keep track of. Called by SoundSource.
+    function addSoundSource(soundSource: SoundSource): Void;
+      // Remove a sound source. Called by SoundSource.
+    function removeSoundSource(soundSource: SoundSource): Void;
+      // Return sound type specific gain multiplied by master gain.
+    function getSoundSourceMasterGain(typeHash: String): Float;
+
+}
+
 @:native("Atomic.Sound")
 extern class Sound extends Resource {
 
@@ -7133,6 +7188,7 @@ extern class UI extends AObject {
     function shutdown(): Void;
     function loadSkin(skin: String, ?overrideSkin: String): Void;
     function getSkinLoaded(): Bool;
+      // UI/Skin/Override/skin.ui.txt for base skin and possible override (TODO: baked in UI setting for load from project)
     function loadDefaultPlayerSkin(): Void;
     function addFont(fontFile: String, name: String): Void;
     function setDefaultFont(name: String, size: Int): Void;
@@ -7217,6 +7273,7 @@ extern class UIEditField extends UIWidget {
     var adaptToContentSize: Bool;
     var editType: UI_EDIT_TYPE;
     var readOnly: Bool;
+    var styling: Bool;
     var multiline: Bool;
     var wrapping: Bool;
 
@@ -7228,6 +7285,7 @@ extern class UIEditField extends UIWidget {
     function getAdaptToContentSize(): Bool;
     function setEditType(type: UI_EDIT_TYPE): Void;
     function setReadOnly(readonly: Bool): Void;
+    function setStyling(styling: Bool): Void;
     function setMultiline(multiline: Bool): Void;
     function scrollTo(x: Int, y: Int): Void;
     function setWrapping(wrap: Bool): Void;
@@ -7252,10 +7310,14 @@ extern class UIFontDescription extends AObject {
 extern class UIImageWidget extends UIWidget {
 
     var image: String;
+    var imageWidth: Int;
+    var imageHeight: Int;
 
     function new(?createWidget: Bool);
 
     function setImage(imagePath: String): Void;
+    function getImageWidth(): Int;
+    function getImageHeight(): Int;
 
 }
 

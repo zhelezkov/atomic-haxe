@@ -1,4 +1,4 @@
--js out/main.js
+-js no-output
 -cp src
 -main Main.hx
 -lib atomic-haxe
