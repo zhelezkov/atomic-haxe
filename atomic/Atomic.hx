@@ -3995,6 +3995,8 @@ extern class CustomGeometry extends Drawable {
     function defineGeometry(index: UInt, type: PrimitiveType, numVertices: UInt, hasNormals: Bool, hasColors: Bool, hasTexCoords: Bool, hasTangents: Bool): Void;
       // Update vertex buffer and calculate the bounding box. Call after finishing defining geometry.
     function commit(): Void;
+      // Set material on all geometries.
+    function setMaterial(material: Material): Void;
       // Return number of geometries.
     function getNumGeometries(): UInt;
       // Return number of vertices in a geometry.
@@ -4003,7 +4005,7 @@ extern class CustomGeometry extends Drawable {
     function isDynamic(): Bool;
       // Return material by geometry index.
     function getMaterial(?index: UInt): Material;
-    function setMaterial(index: UInt, material:Material):Void;
+    function setMaterialIndex(index: UInt, material:Material):Void;
 
 }
 
