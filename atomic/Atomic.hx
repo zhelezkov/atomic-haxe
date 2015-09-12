@@ -18,6 +18,9 @@ extern enum Intersection {
 @:native("Atomic")
 extern enum InterpolationMode {
     BEZIER_CURVE;
+    CATMULL_ROM_CURVE;
+    LINEAR_CURVE;
+    CATMULL_ROM_FULL_CURVE;
 }
 @:native("Atomic")
 extern enum VariantType {
@@ -44,6 +47,7 @@ extern enum VariantType {
     VAR_MATRIX3X4;
     VAR_MATRIX4;
     VAR_DOUBLE;
+    VAR_STRINGVECTOR;
     MAX_VAR_TYPES;
 }
 @:native("Atomic")
@@ -467,20 +471,26 @@ extern enum CollisionEventMode {
     COLLISION_ALWAYS;
 }
 @:native("Atomic")
-extern enum CrowdTargetState {
-    CROWD_AGENT_TARGET_NONE;
-    CROWD_AGENT_TARGET_FAILED;
-    CROWD_AGENT_TARGET_VALID;
-    CROWD_AGENT_TARGET_REQUESTING;
-    CROWD_AGENT_TARGET_WAITINGFORQUEUE;
-    CROWD_AGENT_TARGET_WAITINGFORPATH;
-    CROWD_AGENT_TARGET_VELOCITY;
+extern enum CrowdAgentRequestedTarget {
+    CA_REQUESTEDTARGET_NONE;
+    CA_REQUESTEDTARGET_POSITION;
+    CA_REQUESTEDTARGET_VELOCITY;
+}
+@:native("Atomic")
+extern enum CrowdAgentTargetState {
+    CA_TARGET_NONE;
+    CA_TARGET_FAILED;
+    CA_TARGET_VALID;
+    CA_TARGET_REQUESTING;
+    CA_TARGET_WAITINGFORQUEUE;
+    CA_TARGET_WAITINGFORPATH;
+    CA_TARGET_VELOCITY;
 }
 @:native("Atomic")
 extern enum CrowdAgentState {
-    CROWD_AGENT_INVALID;
-    CROWD_AGENT_READY;
-    CROWD_AGENT_TRAVERSINGLINK;
+    CA_STATE_INVALID;
+    CA_STATE_WALKING;
+    CA_STATE_OFFMESH;
 }
 @:native("Atomic")
 extern enum NavigationQuality {
@@ -490,9 +500,9 @@ extern enum NavigationQuality {
 }
 @:native("Atomic")
 extern enum NavigationPushiness {
-    PUSHINESS_LOW;
-    PUSHINESS_MEDIUM;
-    PUSHINESS_HIGH;
+    NAVIGATIONPUSHINESS_LOW;
+    NAVIGATIONPUSHINESS_MEDIUM;
+    NAVIGATIONPUSHINESS_HIGH;
 }
 @:native("Atomic")
 extern enum NavmeshPartitionType {
@@ -615,6 +625,16 @@ extern enum UI_TEXT_ALIGN {
     UI_TEXT_ALIGN_CENTER;
 }
 @:native("Atomic")
+extern enum UI_WIDGET_STATE {
+    UI_WIDGET_STATE_NONE;
+    UI_WIDGET_STATE_DISABLED;
+    UI_WIDGET_STATE_FOCUSED;
+    UI_WIDGET_STATE_PRESSED;
+    UI_WIDGET_STATE_SELECTED;
+    UI_WIDGET_STATE_HOVERED;
+    UI_WIDGET_STATE_ALL;
+}
+@:native("Atomic")
 extern enum UI_WINDOW_SETTINGS {
     UI_WINDOW_SETTINGS_NONE;
     UI_WINDOW_SETTINGS_TITLEBAR;
@@ -638,9 +658,19 @@ extern enum CompressedFormat {
 }
 @:native("Atomic")
 extern enum JSONValueType {
-    JSON_ANY;
-    JSON_OBJECT;
+    JSON_NULL;
+    JSON_BOOL;
+    JSON_NUMBER;
+    JSON_STRING;
     JSON_ARRAY;
+    JSON_OBJECT;
+}
+@:native("Atomic")
+extern enum JSONNumberType {
+    JSONNT_NAN;
+    JSONNT_INT;
+    JSONNT_UINT;
+    JSONNT_FLOAT_DOUBLE;
 }
 @:native("Atomic")
 extern enum PListValueType {
@@ -801,6 +831,7 @@ extern class Atomic {
     public static var SHADOW_MIN_VIEW: Float;
     public static var MAX_LIGHT_SPLITS: Int;
     public static var MAX_CASCADE_SPLITS: Int;
+    public static var DEFAULT_RENDER_ORDER: Int;
     public static var OCCLUSION_MIN_SIZE: Int;
     public static var OCCLUSION_DEFAULT_MAX_TRIANGLES: Int;
     public static var OCCLUSION_RELATIVE_BIAS: Float;
@@ -1585,8 +1616,6 @@ extern class Node extends Animatable {
     function getOrCreateComponent(type: String, ?mode: CreateMode, ?id: UInt): Component;
       // Remove all components from this node.
     function removeAllComponents(): Void;
-      // Remove components that match criteria.
-    function removeComponents(removeReplicated: Bool, removeLocal: Bool): Void;
       // Clone scene node, components and child nodes. Return the clone.
     function clone(?mode: CreateMode): Node;
       // Remove from the parent node. If no other shared pointer references exist, causes immediate deletion.
@@ -1662,7 +1691,7 @@ extern class Node extends Animatable {
       // Return number of non-local components.
     function getNumNetworkComponents(): UInt;
       // Return component by type. If there are several, returns the first.
-    function getComponent(type: String): Component;
+    function getComponent(type: String, ?recursive: Bool): Component;
       // Return whether has a specific component.
     function hasComponent(type: String): Bool;
       // Set ID. Called by Scene.
@@ -1923,6 +1952,7 @@ extern class SplinePath extends Component {
     var speed: Float;
     var position: Vector3;
     var controlledNode: Node;
+    var length: Float;
     var controlledIdAttr: UInt;
 
       // Construct an Empty SplinePath.
@@ -1952,6 +1982,8 @@ extern class SplinePath extends Component {
     function getInterpolationMode(): InterpolationMode;
       // Get the movement Speed.
     function getSpeed(): Float;
+      // Get the length of SplinePath;
+    function getLength(): Float;
       // Get the parent Node's last position on the spline.
     function getPosition(): Vector3;
       // Get the controlled Node.
@@ -2436,6 +2468,7 @@ extern class Material extends Resource {
     var cullMode: CullMode;
     var shadowCullMode: CullMode;
     var fillMode: FillMode;
+    var renderOrder: Dynamic;
     var scene: Scene;
     var auxViewFrameNumber: UInt;
     var occlusion: Bool;
@@ -2465,6 +2498,8 @@ extern class Material extends Resource {
     function setShadowCullMode(mode: CullMode): Void;
       // Set polygon fill mode. Interacts with the camera's fill mode setting so that the "least filled" mode will be used.
     function setFillMode(mode: FillMode): Void;
+      // Set 8-bit render order within pass. Default 128. Lower values will render earlier and higher values later, taking precedence over e.g. state and distance sorting.
+    function setRenderOrder(order: Dynamic): Void;
       // Associate the material with a scene to ensure that shader parameter animation happens in sync with scene update, respecting the scene time scale. If no scene is set, the global update events will be used.
     function setScene(scene: Scene): Void;
       // Remove shader parameter.
@@ -2497,6 +2532,8 @@ extern class Material extends Resource {
     function getShadowCullMode(): CullMode;
       // Return polygon fill mode.
     function getFillMode(): FillMode;
+      // Return render order.
+    function getRenderOrder(): Dynamic;
       // Return last auxiliary view rendered frame number.
     function getAuxViewFrameNumber(): UInt;
       // Return whether should render occlusion.
@@ -2605,7 +2642,7 @@ extern class Renderer extends AObject {
     function setMinInstances(instances: Int): Void;
       // Set maximum number of sorted instances per batch group. If exceeded, instances are rendered unsorted.
     function setMaxSortedInstances(instances: Int): Void;
-      // Set maximum number of occluder trianges.
+      // Set maximum number of occluder triangles.
     function setMaxOccluderTriangles(triangles: Int): Void;
       // Set occluder buffer width.
     function setOcclusionBufferSize(size: Int): Void;
@@ -3124,15 +3161,6 @@ extern class Graphics extends AObject {
     var readableDepthFormat: UInt;
     var pixelUVOffset: Vector2;
     var maxBones: UInt;
-    #if Mac
-    var forceGL2: Bool;
-    var textureForUpdate: Texture;
-    var anisotropySupport: Bool;
-    var depthTexture: Texture2D;
-    var vbo: UInt;
-    var ubo: UInt;
-    var gL3Support: Bool;
-    #end
 
       // Construct.
     function new();
@@ -3384,35 +3412,6 @@ extern class Graphics extends AObject {
       // Return maximum number of supported bones for skinning.
     function getMaxBones(): UInt;
 
-    #if Mac
-    // Set forced use of OpenGL 2 even if OpenGL 3 is available. Must be called before setting the screen mode for the first time. Default false.
-    function setForceGL2(enable: Bool): Void;
-    // Bind texture unit 0 for update. Called by Texture.
-    function setTextureForUpdate(texture: Texture): Void;
-    // Dirty texture parameters of all textures (when global settings change.)
-    function setTextureParametersDirty(): Void;
-    // Return whether OpenGL 2 use is forced.
-    function getForceGL2(): Bool;
-    // Return whether anisotropic texture filtering is supported.
-    function getAnisotropySupport(): Bool;
-    // Return readable depth-stencil texture. Not created automatically on OpenGL.
-    function getDepthTexture(): Texture2D;
-      // Clean up a render surface from all FBOs.
-    function cleanupRenderSurface(surface: RenderSurface): Void;
-      // Release/clear GPU objects and optionally close the window.
-    function release(clearGPUObjects: Bool, closeWindow: Bool): Void;
-      // Restore GPU objects and reinitialize state. Requires an open window.
-    function restore(): Void;
-    // Mark the FBO needing an update.
-    function markFBODirty(): Void;
-    // Bind a VBO, avoiding redundant operation.
-    function setVBO(object: UInt): Void;
-    // Bind a UBO, avoiding redundant operation.
-    function setUBO(object: UInt): Void;
-    // Return whether is using an OpenGL 3 context.
-    function getGL3Support(): Bool;
-    #end
-
 }
 
 @:native("Atomic.RenderSurface")
@@ -3426,10 +3425,6 @@ extern class RenderSurface extends RefCounted {
     var width: Int;
     var height: Int;
     var usage: TextureUsage;
-    #if Mac
-    var renderBuffer: UInt;
-    var target: UInt;
-    #end
 
       // Construct with parent texture.
     function new(parentTexture: Texture);
@@ -3468,18 +3463,6 @@ extern class RenderSurface extends RefCounted {
     function getLinkedDepthStencil(): RenderSurface;
       // Clear update flag. Called by Renderer.
     function wasUpdated(): Void;
-    #if Mac
-    // Create a renderbuffer. Return true if successful.
-    function createRenderBuffer(width: UInt, height: UInt, format: UInt): Bool;
-      // Handle device loss.
-    function onDeviceLost(): Void;
-    // Return renderbuffer if created.
-    function getRenderBuffer(): UInt;
-    // Set surface's OpenGL target.
-    function setTarget(target: UInt): Void;
-      // Return surface's OpenGL target.
-    function getTarget(): UInt;
-    #end
 
 }
 
@@ -3516,16 +3499,11 @@ extern class ShaderVariation extends RefCounted {
     function getFullName(): String;
       // Return compile error/warning string.
     function getCompilerOutput(): String;
-    #if Windows
       // Return whether uses a parameter.
     function hasParameter(param: String): Bool;
       // Return whether uses a texture unit (only for pixel shaders.)
     function hasTextureUnit(unit: TextureUnit): Bool;
-    #end
-    #if Mac
-    // Mark the GPU resource destroyed on context destruction.
-    function onDeviceLost(): Void;
-    #end
+
 }
 
 @:native("Atomic.Texture")
@@ -3545,10 +3523,6 @@ extern class Texture extends Resource {
     var usage: TextureUsage;
     var components: UInt;
     var parameters: XMLFile;
-    #if Mac
-    var target: UInt;
-    var parametersDirty: Bool;
-    #end
 
       // Construct.
     function new();
@@ -3609,22 +3583,7 @@ extern class Texture extends Resource {
     function getComponents(): UInt;
       // Set additional parameters from an XML file.
     function setParameters(xml: XMLFile): Void;
-    #if Mac
-    // Dirty the parameters.
-    function setParametersDirty(): Void;
-      // Update changed parameters to OpenGL. Called by Graphics when binding the texture.
-    function updateParameters(): Void;
-      // Return texture's OpenGL target.
-    function getTarget(): UInt;
-    // Return whether parameters are dirty.
-    function getParametersDirty(): Bool;
-    // Return the corresponding SRGB texture format if supported. If not supported, return format unchanged.
-    function getSRGBFormat(format: UInt): UInt;
-    // Return the non-internal texture format corresponding to an OpenGL internal format.
-    function getExternalFormat(format: UInt): UInt;
-      // Return the data type corresponding to an OpenGL internal format.
-    function getDataType(format: UInt): UInt;
-    #end
+
 }
 
 @:native("Atomic.Texture2D")
@@ -3827,6 +3786,8 @@ extern class AnimationController extends Component {
     function setSpeed(name: String, speed: Float): Bool;
       // Set animation autofade at end (non-looped animations only.) Zero time disables. Return true on success.
     function setAutoFade(name: String, fadeOutTime: Float): Bool;
+      // Set whether an animation auto-removes on completion.
+    function setRemoveOnCompletion(name: String, removeOnCompletion: Bool): Bool;
       // Return whether an animation is active. Note that non-looping animations that are being clamped at the end also return true.
     function isPlaying(name: String): Bool;
       // Return whether an animation is fading in.
@@ -3855,6 +3816,8 @@ extern class AnimationController extends Component {
     function getFadeTime(name: String): Float;
       // Return animation autofade time.
     function getAutoFade(name: String): Float;
+      // Return whether animation auto-removes on completion, or false if no such animation.
+    function getRemoveOnCompletion(name: String): Bool;
     function addAnimationResource(animation: Animation): Void;
     function removeAnimationResource(animation: Animation): Void;
     function clearAnimationResources(): Void;
@@ -3966,6 +3929,7 @@ extern class CustomGeometry extends Drawable {
 
     var numGeometries: UInt;
     var dynamik: Bool;
+    var material: Material;
 
       // Construct.
     function new();
@@ -4005,7 +3969,7 @@ extern class CustomGeometry extends Drawable {
     function isDynamic(): Bool;
       // Return material by geometry index.
     function getMaterial(?index: UInt): Material;
-    function setMaterialIndex(index: UInt, material:Material):Void;
+      function setMaterialIndex(index:UInt, material:Material):Void;
 
 }
 
@@ -4421,6 +4385,8 @@ extern class Terrain extends Component {
 
     var patchSize: Int;
     var spacing: Vector3;
+    var maxLodLevels: UInt;
+    var occlusionLodLevel: UInt;
     var smoothing: Bool;
     var material: Material;
     var drawDistance: Float;
@@ -4438,6 +4404,8 @@ extern class Terrain extends Component {
     var numPatches: IntVector2;
     var heightMap: Image;
     var patchSizeAttr: Int;
+    var maxLodLevelsAttr: UInt;
+    var occlusionLodLevelAttr: UInt;
 
       // Construct.
     function new();
@@ -4452,6 +4420,10 @@ extern class Terrain extends Component {
     function setPatchSize(size: Int): Void;
       // Set vertex (XZ) and height (Y) spacing.
     function setSpacing(spacing: Vector3): Void;
+      // Set maximum number of LOD levels for terrain patches. This can be between 1-4.
+    function setMaxLodLevels(levels: UInt): Void;
+      // Set LOD level used for terrain patch occlusion. By default (M_MAX_UNSIGNED) the coarsest. Since the LOD level used needs to be fixed, using finer LOD levels may result in false positive occlusion in cases where the actual rendered geometry is coarser, so use with caution.
+    function setOcclusionLodLevel(level: UInt): Void;
       // Set smoothing of heightmap.
     function setSmoothing(enable: Bool): Void;
       // Set heightmap image. Dimensions should be a power of two + 1. Uses 8-bit grayscale, or optionally red as MSB and green as LSB for 16-bit accuracy. Return true if successful.
@@ -4476,7 +4448,7 @@ extern class Terrain extends Component {
     function setMaxLights(num: UInt): Void;
       // Set shadowcaster flag for patches.
     function setCastShadows(enable: Bool): Void;
-      // Set occlusion flag for patches. Occlusion uses the coarsest LOD and may potentially be too aggressive, so use with caution.
+      // Set occlusion flag for patches. Occlusion uses the coarsest LOD by default.
     function setOccluder(enable: Bool): Void;
       // Set occludee flag for patches.
     function setOccludee(enable: Bool): Void;
@@ -4490,6 +4462,10 @@ extern class Terrain extends Component {
     function getNumVertices(): IntVector2;
       // Return heightmap size in patches.
     function getNumPatches(): IntVector2;
+      // Return maximum number of LOD levels for terrain patches. This can be between 1-4.
+    function getMaxLodLevels(): UInt;
+      // Return LOD level used for occlusion.
+    function getOcclusionLodLevel(): UInt;
       // Return whether smoothing is in use.
     function getSmoothing(): Bool;
       // Return heightmap image.
@@ -4532,6 +4508,10 @@ extern class Terrain extends Component {
     function updatePatchLod(patch: TerrainPatch): Void;
       // Set patch size attribute.
     function setPatchSizeAttr(value: Int): Void;
+      // Set max LOD levels attribute.
+    function setMaxLodLevelsAttr(value: UInt): Void;
+      // Set occlusion LOD level attribute.
+    function setOcclusionLodLevelAttr(value: UInt): Void;
 
 }
 
@@ -4541,7 +4521,6 @@ extern class TerrainPatch extends Drawable {
     var owner: Terrain;
     var material: Material;
     var coordinates: IntVector2;
-    var occlusionOffset: Float;
     var northPatch: TerrainPatch;
     var southPatch: TerrainPatch;
     var westPatch: TerrainPatch;
@@ -4570,8 +4549,6 @@ extern class TerrainPatch extends Drawable {
     function setBoundingBox(box: BoundingBox): Void;
       // Set patch coordinates.
     function setCoordinates(coordinates: IntVector2): Void;
-      // Set vertical offset for occlusion geometry. Should be negative.
-    function setOcclusionOffset(offset: Float): Void;
       // Reset to LOD level 0.
     function resetLod(): Void;
       // Return owner terrain.
@@ -4588,8 +4565,6 @@ extern class TerrainPatch extends Drawable {
     function getCoordinates(): IntVector2;
       // Return current LOD level.
     function getLodLevel(): UInt;
-      // Return vertical offset for occlusion geometry..
-    function getOcclusionOffset(): Float;
 
 }
 
@@ -6900,7 +6875,6 @@ extern class NavigationMesh extends Component {
     var detailSampleDistance: Float;
     var detailSampleMaxError: Float;
     var padding: Vector3;
-    var randomPoint: Vector3;
     var meshName: String;
     var boundingBox: BoundingBox;
     var worldBoundingBox: BoundingBox;
@@ -6942,18 +6916,6 @@ extern class NavigationMesh extends Component {
     function setPadding(padding: Vector3): Void;
       // Set the cost of an area.
     function setAreaCost(areaID: UInt, cost: Float): Void;
-      // Find the nearest point on the navigation mesh to a given point. Extens specifies how far out from the specified point to check along each axis.
-    function findNearestPoint(point: Vector3, ?extents: Vector3): Vector3;
-      // Try to move along the surface from one point to another.
-    function moveAlongSurface(start: Vector3, end: Vector3, ?extents: Vector3, ?maxVisited: Int): Vector3;
-      // Return a random point on the navigation mesh.
-    function getRandomPoint(): Vector3;
-      // Return a random point on the navigation mesh within a circle. The circle radius is only a guideline and in practice the returned point may be further away.
-    function getRandomPointInCircle(center: Vector3, radius: Float, ?extents: Vector3): Vector3;
-      // Return distance to wall from a point. Maximum search radius must be specified.
-    function getDistanceToWall(point: Vector3, radius: Float, ?extents: Vector3): Float;
-      // Perform a walkability raycast on the navigation mesh between start and end and return the point where a wall was hit, or the end point if no walls.
-    function raycast(start: Vector3, end: Vector3, ?extents: Vector3): Vector3;
       // Return the given name of this navigation mesh.
     function getMeshName(): String;
       // Set the name of this navigation mesh.
@@ -7200,6 +7162,8 @@ extern class UI extends AObject {
     function toggleDebugHud(): Void;
     function showConsole(value: Bool): Void;
     function toggleConsole(): Void;
+      // request exit on next frame
+    function requestExit(): Void;
 
 }
 
@@ -7289,6 +7253,7 @@ extern class UIEditField extends UIWidget {
     function setReadOnly(readonly: Bool): Void;
     function setStyling(styling: Bool): Void;
     function setMultiline(multiline: Bool): Void;
+    function reformat(?update_fragments: Bool): Void;
     function scrollTo(x: Int, y: Int): Void;
     function setWrapping(wrap: Bool): Void;
     function getWrapping(): Bool;
@@ -7538,6 +7503,17 @@ extern class UISection extends UIWidget {
 
 }
 
+@:native("Atomic.UISelectDropdown")
+extern class UISelectDropdown extends UIButton {
+
+    var source: UISelectItemSource;
+
+    function new(?createWidget: Bool);
+
+    function setSource(source: UISelectItemSource): Void;
+
+}
+
 @:native("Atomic.UISelectItem")
 extern class UISelectItem extends AObject {
 
@@ -7665,7 +7641,7 @@ extern class UIWidget extends AObject {
     var value: Float;
     var focus: Bool;
     var visibility: UI_WIDGET_VISIBILITY;
-    var stateRaw: UInt;
+    var stateRaw: UI_WIDGET_STATE;
     var dragObject: UIDragObject;
     var firstChild: UIWidget;
     var next: UIWidget;
@@ -7700,12 +7676,12 @@ extern class UIWidget extends AObject {
       // Set focus to first widget which accepts it
     function setFocusRecursive(): Void;
     function onFocusChanged(focused: Bool): Void;
-    function setState(state: UInt, on: Bool): Void;
-    function getState(state: UInt): Bool;
+    function setState(state: UI_WIDGET_STATE, on: Bool): Void;
+    function getState(state: UI_WIDGET_STATE): Bool;
     function setVisibility(visibility: UI_WIDGET_VISIBILITY): Void;
     function getVisibility(): UI_WIDGET_VISIBILITY;
-    function setStateRaw(state: UInt): Void;
-    function getStateRaw(): UInt;
+    function setStateRaw(state: UI_WIDGET_STATE): Void;
+    function getStateRaw(): UI_WIDGET_STATE;
     function invalidate(): Void;
     function die(): Void;
     function setDragObject(object: UIDragObject): Void;
@@ -7719,6 +7695,7 @@ extern class UIWidget extends AObject {
     function addChild(child: UIWidget): Void;
       // This takes a relative Z and insert the child before or after the given reference widget.
     function addChildRelative(child: UIWidget, z: UI_WIDGET_Z_REL, reference: UIWidget): Void;
+    function invalidateLayout(): Void;
 
 }
 
@@ -7755,6 +7732,7 @@ extern class Image extends Resource {
     var compressedFormat: CompressedFormat;
     var numCompressedLevels: UInt;
     var nextLevel: Image;
+    var nextSibling: Image;
 
       // Construct empty.
     function new();
@@ -7777,6 +7755,14 @@ extern class Image extends Resource {
     function saveTGA(fileName: String): Bool;
       // Save in JPG format with compression quality. Return true if successful.
     function saveJPG(fileName: String, quality: Int): Bool;
+      // Whether this texture is detected as a cubemap, only relevant for DDS.
+    function isCubemap(): Bool;
+      // Whether this texture has been detected as a volume, only relevant for DDS.
+    function isArray(): Bool;
+      // Whether this texture is in sRGB, only relevant for DDS.
+    function isSRGB(): Bool;
+      // Return a 2D pixel color.
+    function getPixel(x: Int, y: Int): Color;
       // Return a bilinearly sampled 2D pixel color. X and Y have the range 0-1.
     function getPixelBilinear(x: Float, y: Float): Color;
       // Return a trilinearly sampled 3D pixel color. X, Y and Z have the range 0-1.
@@ -7797,6 +7783,8 @@ extern class Image extends Resource {
     function getNumCompressedLevels(): UInt;
       // Return next mip level by bilinear filtering.
     function getNextLevel(): Image;
+      // Return the next sibling image of an array or cubemap.
+    function getNextSibling(): Image;
       // Return image converted to 4-component (RGBA) to circumvent modern rendering API's not supporting e.g. the luminance-alpha format.
     function convertToRGBA(): Image;
       // Return subimage from the image by the defined rect or null if failed. 3D images are not supported. You must free the subimage yourself.
@@ -8431,3 +8419,5 @@ extern class ProcSky extends Drawable {
     function getTimeOfDay(): Float;
 
 }
+
+
