@@ -2456,7 +2456,7 @@ extern class Light extends Drawable {
       // Return a divisor value based on intensity for calculating the sort value.
     function getIntensityDivisor(?attenuation: Float): Float;
       function getShadowCascade():Array<Float>;
-      function setShadowCascade(args:Array<Float>):Void;
+      function setShadowCascade(split1:Float, split2:Float, split3:Float, split4:Float, fadeStart:Float, ?biasAutoAdjust:Float):Void;
       function setShadowCascadeParameter(index:Int, value:Float):Void;
 
 }
@@ -3874,6 +3874,27 @@ extern class AnimationState extends RefCounted {
 
 }
 
+@:native("Atomic.Billboard")
+extern class Billboard extends RefCounted {
+
+    var position: Vector3;
+    var size: Vector3;
+    var color: Color;
+    var enabled: Bool;
+
+    function new();
+
+    function getPosition(): Vector3;
+    function setPosition(position: Vector3): Void;
+    function getSize(): Vector3;
+    function setSize(size: Vector2): Void;
+    function getColor(): Color;
+    function setColor(color: Color): Void;
+    function isEnabled(): Bool;
+    function setEnabled(enabled: Bool): Void;
+
+}
+
 @:native("Atomic.BillboardSet")
 extern class BillboardSet extends Drawable {
 
@@ -3911,6 +3932,8 @@ extern class BillboardSet extends Drawable {
     function getMaterial(): Material;
       // Return number of billboards.
     function getNumBillboards(): UInt;
+      // Return billboard by index.
+    function getBillboard(index: UInt): Billboard;
       // Return whether billboards are relative to the scene node.
     function isRelative(): Bool;
       // Return whether scene node scale affects billboards' size.
@@ -8419,5 +8442,3 @@ extern class ProcSky extends Drawable {
     function getTimeOfDay(): Float;
 
 }
-
-
